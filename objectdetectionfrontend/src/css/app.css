@@ -1,0 +1,112 @@
+* {
+  font-family: 'Epilogue', sans-serif;
+  /* font-family: "MyFont"; */
+  transition: all 0.5s ease;
+  box-sizing: border-box;
+}
+.span {
+  width: fit-content;
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  font-weight: 400;
+  position: relative;
+  margin: auto;
+  margin-top: 10px;
+}
+h3 {
+  font-size: 20px;
+  margin: 0;
+  padding-top: 20px;
+  font-weight: 500;
+}
+body {
+  margin: 0;
+  padding: 0;
+}
+.middle {
+  padding: 30px;
+  width: 100%;
+  margin: auto;
+}
+.middle .card {
+  display: flex;
+  flex-direction: row;
+  background-color: aliceblue;
+  width: 80%;
+  margin: auto;
+  padding: 35px;
+}
+.middle .card .cards {
+  width: fit-content;
+  background-color: white;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border-radius: 5px;
+  padding: 0 12px 0 12px;
+  margin: auto;
+  padding-bottom: 15px;
+  cursor: pointer;
+}
+/* .middle .card .cards:hover {
+  transform: scale(1.02);
+} */
+.middle .card .cards .cards-inside .header {
+  text-align: center;
+  padding: 5px 23px 10px 23px;
+  border: 1px solid rgba(0, 0, 0, 0.164);
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+}
+.middle .card .cards .cards-inside .body {
+  padding: 12px;
+  font-size: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.164);
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+}
+.middle .card .cards .cards-inside .run-stop {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  cursor: auto;
+}
+.middle .card .cards .cards-inside .run-stop .change {
+  width: fit-content;
+  background-color: white;
+  padding: 12px;
+  color: #11823b;
+  border-radius: 5px;
+  text-align: center;
+  width: 60%;
+  border: 1px solid #11823b;
+  cursor: pointer;
+}
+.middle .card .cards .cards-inside .run-stop .change:hover {
+  background-color: #11823b;
+  color: white;
+  border: 1px solid #11823b;
+}
+.middle .card .cards .cards-inside .run-stop .change p {
+  transition: all 0s ease;
+}
+.middle .card .cards .cards-inside .body div div {
+  display: flex;
+  align-items: center;
+}
+.middle .card .cards .cards-inside .body div div p {
+  font-weight: 600;
+  margin: 5px 0 5px 0;
+  font-size: 13px;
+}
+.middle .card .cards .cards-inside .body div div span {
+  margin-left: 5px;
+}
+/* .middle .card .cards .cards-inside .body div{
+} */
+
+/* @font-face {
+  font-family: "MyFont";
+  src: url('C:/Users/Harun/Desktop/DjangoCameraApp/front-end/src/css/Blaimim.ttf');
+} */
