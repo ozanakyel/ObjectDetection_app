@@ -45,18 +45,20 @@ body {
 .middle .card .cards {
   flex: 25%;
   background-color: white;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-  border-radius: 5px;
-  padding: 0 12px 0 12px;
+  box-shadow: rgba(100, 100, 111, 0.075) 0px 7px 29px 0px;
+  border-radius: 30px;
+  padding: 0 3px 0 3px;
   margin: 10px;
   max-width: fit-content;
   min-width: fit-content;
   padding-bottom: 15px;
   cursor: pointer;
 }
-/* .middle .card .cards:hover {
-  transform: scale(1.02);
-} */
+.middle .card .cards:hover {
+  box-shadow: rgba(151, 151, 151, 0.329) 0px 0px 15px 7px;
+  transition-duration: 0.2s;
+  transform: scale(1.01);
+}
 .middle .card .cards .cards-inside .header {
   text-align: center;
   padding: 5px 23px 10px 23px;
