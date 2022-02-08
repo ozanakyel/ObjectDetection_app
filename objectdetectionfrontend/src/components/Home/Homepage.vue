@@ -46,12 +46,11 @@ export default {
         name: 'Project'
       })
     }
+  },
+  mounted () {
+    if (Number(document.querySelector('.middle').offsetHeight) < Number(window.innerHeight)) {
+      document.querySelector('.middle').style.height = (window.innerHeight - document.querySelector('.navbar').offsetHeight) + 'px'
+    }
   }
 }
 </script>
-
-<style scoped>
-a {
-  color: #42b983;
-}
-</style>

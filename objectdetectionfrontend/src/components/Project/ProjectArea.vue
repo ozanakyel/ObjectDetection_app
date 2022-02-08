@@ -125,7 +125,7 @@ export default {
     // console.log(document.querySelector('.project-area').offsetHeight)
     // console.log(window.innerHeight)
     if (Number(document.querySelector('.project-area').offsetHeight) < Number(window.innerHeight)) {
-      document.querySelector('.project-area').style.height = (window.innerHeight - document.querySelector('.navbar').offsetHeight) + 'px'
+      document.querySelector('.project-area').style.height = (window.innerHeight) + 'px'
     }
     // document.querySelector('.exit').addEventListener('click', this.goToHome())
     // console.log(document.querySelector('img.images').style.innerHeight)
