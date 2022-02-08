@@ -84,7 +84,10 @@
             </div>
             <div class="footer">
               <div>
-                <input type="checkbox" name="kesisim" id="kesisim">Kesişim Yeterli mi ?
+                <div id="inputs-2" style="width: 100%">
+                  <div class="inputs"><div>Resim Klasörü: </div> <div style="width: 85%"><input v-model="x" type="number" step="1" disabled/></div></div>
+                  <div class="inputs"><div>Log Dosyası:</div> <div style="width: 85%"><input v-model="y" type="number" step="1" disabled/></div></div>
+                </div>
               </div>
             </div>
           </div>

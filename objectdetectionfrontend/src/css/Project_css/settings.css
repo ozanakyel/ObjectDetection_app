@@ -29,9 +29,9 @@
 }
 .project .project-area .settings-show .settings .body {
     background-color: #f7f7f7;
-    padding: 20px 30px 20px 30px;
+    padding: 20px 30px 35px 30px;
 }
-.project .project-area .settings-show .settings .body #inputs input {
+.project .project-area .settings-show .settings .body input {
     width: 60%;
     margin-left: 10px;
     background-color: rgba(255, 255, 0, 0.171);
@@ -39,7 +39,7 @@
 .project .project-area .settings-show .settings .body #inputs {
     display: flex;
 }
-.project .project-area .settings-show .settings .body #inputs .inputs {
+.project .project-area .settings-show .settings .body .inputs {
     text-align: left;
     margin-bottom: 5px;
 }
@@ -78,4 +78,7 @@
 .project .project-area .settings-show .settings .body .footer {
     margin-top: 20px;
     text-align: left;
+}
+.project .project-area .settings-show .settings .body .footer input {
+    width: 100%;
 }
