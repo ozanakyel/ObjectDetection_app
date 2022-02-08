@@ -1,10 +1,10 @@
 <template>
   <div class="middle">
     <div class="card">
-      <div v-for="n in 1" class="cards" @click="goToProject($event)" :key="n">
+      <div v-for="(item,index) in projects" class="cards" @click="goToProject($event)" :key="index">
         <div class="cards-inside">
           <div class="header">
-            <h3>Safety Zone</h3>
+            <h3>{{item.name}}</h3>
             <div class="span">Project Active<span style="position: absolute;background-color: green;width: 8px;height: 8px;border-radius: 100%;margin-left: 5px;margin-top: 5px;"></span></div>
           </div>
           <div class="body">
@@ -37,7 +37,7 @@ export default {
   name: 'Homepage',
   data () {
     return {
-      asd: 'asd'
+      projects: []
     }
   },
   methods: {
@@ -48,6 +48,15 @@ export default {
         })
       }
     }
+  },
+  created () {
+    fetch('http://127.0.0.1:8000/get_projects', {
+      method: 'GET'
+    })
+      .then(response => response.json())
+      .then(data => {
+        this.projects = data
+      })
   },
   mounted () {
     if (Number(document.querySelector('.middle').offsetHeight) < Number(window.innerHeight)) {
