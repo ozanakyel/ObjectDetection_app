@@ -24,11 +24,6 @@
         </div>
       </div>
     </div>
-    <!-- <div class="project">
-      <div class="showproject">
-        <img id="video" src="http://127.0.0.1:8000/polls/video_feed">
-      </div>
-    </div> -->
   </div>
 </template>
 
