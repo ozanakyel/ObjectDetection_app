@@ -29,13 +29,19 @@
 }
 .project .project-area .settings-show .settings .body {
     background-color: #f7f7f7;
+    padding: 20px 30px 20px 30px;
 }
-.project .project-area .settings-show .settings .body input {
-    width: 80%;
+.project .project-area .settings-show .settings .body #inputs input {
+    width: 60%;
+    margin-left: 10px;
+    background-color: rgba(255, 255, 0, 0.171);
 }
 .project .project-area .settings-show .settings .body #inputs {
     display: flex;
-    padding: 20px 30px 20px 30px;
+}
+.project .project-area .settings-show .settings .body #inputs .inputs {
+    text-align: left;
+    margin-bottom: 5px;
 }
 .project .project-area .settings-show .settings .body #inputs-1 {
     width: fit-content;
@@ -68,4 +74,8 @@
     flex-direction: row;
     align-items: flex-start;
     justify-content: space-between;
+}
+.project .project-area .settings-show .settings .body .footer {
+    margin-top: 20px;
+    text-align: left;
 }

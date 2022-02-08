@@ -64,22 +64,27 @@
           <div class="body">
             <div id="inputs">
               <div id="inputs-1">
-                <div class="inputs"><div>Kamera IP Adresi:</div> <div><input v-model="cameraIp" /></div></div>
-                <div class="inputs"><div>PLC IP Adresi:</div> <div><input v-model="plcIp" /></div></div>
-                <div class="inputs"><div>Tahminleme Min Oran %:</div> <div><input v-model="minOran" /></div></div>
-                <div class="inputs"><div>Maksimum Deneme Sayısı:</div> <div><input v-model="denemeSayisi" /></div></div>
-                <div class="inputs"><div>İstasyon Db Adres:</div> <div><input v-model="dbAdres" /></div></div>
-                <div class="inputs"><div>Operasyon Başladı mı DB:</div><div> <input v-model="basladimi" /></div></div>
-                <div class="inputs"><div>Operasyon Tamamlandı mı DB:</div> <div><input v-model="tamamlandimi" /></div></div>
+                <div class="inputs"><div>Kamera IP Adresi:</div> <div><input v-model="cameraIp" disabled/></div></div>
+                <div class="inputs"><div>PLC IP Adresi:</div> <div><input v-model="plcIp" disabled/></div></div>
+                <div class="inputs"><div>Tahminleme Min Oran %:</div> <div><input v-model="minOran" type="number" step="1" disabled/></div></div>
+                <div class="inputs"><div>Maksimum Deneme Sayısı:</div> <div><input v-model="denemeSayisi" type="number" step="1" disabled/></div></div>
+                <div class="inputs"><div>İstasyon Db Adres:</div> <div><input v-model="dbAdres" disabled/></div></div>
+                <div class="inputs"><div>Operasyon Başladı mı DB:</div><div> <input v-model="basladimi" disabled/></div></div>
+                <div class="inputs"><div>Operasyon Tamamlandı mı DB:</div> <div><input v-model="tamamlandimi" disabled/></div></div>
               </div>
               <div id="inputs-2">
                 <div class="crop">
                   <span class="head">Crop</span>
-                  <div class="inputs"><div>Başlangıç X:</div> <div><input v-model="x" /></div></div>
-                  <div class="inputs"><div>Başlangıç Y:</div> <div><input v-model="y" /></div></div>
-                  <div class="inputs"><div>X Mesafesi:</div> <div><input v-model="xRange" /></div></div>
-                  <div class="inputs"><div>Y Mesafesi:</div> <div><input v-model="yRange" /></div></div>
+                  <div class="inputs"><div>Başlangıç X:</div> <div><input v-model="x" type="number" step="1" disabled/></div></div>
+                  <div class="inputs"><div>Başlangıç Y:</div> <div><input v-model="y" type="number" step="1" disabled/></div></div>
+                  <div class="inputs"><div>X Mesafesi:</div> <div><input v-model="xRange" type="number" step="1" disabled/></div></div>
+                  <div class="inputs"><div>Y Mesafesi:</div> <div><input v-model="yRange" type="number" step="1" disabled/></div></div>
                 </div>
+              </div>
+            </div>
+            <div class="footer">
+              <div>
+                <input type="checkbox" name="kesisim" id="kesisim">Kesişim Yeterli mi ?
               </div>
             </div>
           </div>
