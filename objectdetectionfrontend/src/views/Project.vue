@@ -21,6 +21,9 @@ export default {
     return {
       msg: ''
     }
+  },
+  mounted () {
+    document.querySelector('.navbar').style.display = 'flex'
   }
 }
 </script>

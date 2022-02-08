@@ -114,6 +114,11 @@ export default {
       if (event.target.className === 'settings-show') {
         document.querySelector('.settings-show').style.display = 'none'
       }
+    },
+    goToHome () {
+      this.$router.push({
+        name: 'Home'
+      })
     }
   },
   mounted () {
@@ -122,6 +127,7 @@ export default {
     if (Number(document.querySelector('.project-area').offsetHeight) < Number(window.innerHeight)) {
       document.querySelector('.project-area').style.height = (window.innerHeight - document.querySelector('.navbar').offsetHeight) + 'px'
     }
+    // document.querySelector('.exit').addEventListener('click', this.goToHome())
     // console.log(document.querySelector('img.images').style.innerHeight)
   }
 }
