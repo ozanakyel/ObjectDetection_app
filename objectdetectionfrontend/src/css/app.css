@@ -25,6 +25,7 @@ body {
   padding: 0;
 }
 .middle {
+  display: flex;
   padding: 30px;
   width: 100%;
   margin: auto;
@@ -32,18 +33,22 @@ body {
 .middle .card {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
   background-color: aliceblue;
   width: 80%;
   margin: auto;
   padding: 35px;
 }
 .middle .card .cards {
-  width: fit-content;
+  flex: 25%;
   background-color: white;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   border-radius: 5px;
   padding: 0 12px 0 12px;
-  margin: auto;
+  margin: 10px;
+  max-width: fit-content;
+  min-width: fit-content;
   padding-bottom: 15px;
   cursor: pointer;
 }

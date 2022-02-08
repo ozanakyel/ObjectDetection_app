@@ -1,7 +1,7 @@
 <template>
   <div class="middle">
     <div class="card">
-      <div v-for="n in 3" class="cards" :key="n">
+      <div v-for="n in 4" class="cards" :key="n">
         <div class="cards-inside">
           <div @click="goProject" class="header">
             <h3>OBJECT DETECTION</h3>
