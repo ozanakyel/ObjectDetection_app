@@ -2,8 +2,11 @@
   <div class="project-area">
     <div class="project-view">
       <div class="top">
-        <div class="shower">
+        <div class="shower" style="position: relative;">
           MIFI - Object Detection / SafetyZone
+          <div @click="goToHome" class="exit" style="position:absolute;right:0;top: -8px;text-align: right;padding:8px 12px 8px 5px;cursor: pointer;">
+            <span style="font-size: 11px; color: red;margin-right: 3px;">Çıkış</span><svg xmlns="http://www.w3.org/2000/svg" style="color: red" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-log-out"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+          </div>
         </div>
         <div>
           <div class="butons">
@@ -50,9 +53,6 @@
                 <td>01.02.2022 13:28:09</td>
               </tr>
             </table>
-          </div>
-          <div class="exit" style="text-align: right;padding:8px 12px 8px 5px;cursor: pointer;">
-            <svg xmlns="http://www.w3.org/2000/svg" style="color: red" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-log-out"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
           </div>
         </div>
       </div>
