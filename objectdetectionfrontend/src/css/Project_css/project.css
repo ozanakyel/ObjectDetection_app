@@ -1,7 +1,8 @@
 .project .project-area {
+    height: fit-content;
     display: flex;
     background-color: aliceblue;
-    padding: 50px;
+    /* padding: 20px 50px 20px 50px; */
 }
 .project .project-area .project-view {
     background-color: white;

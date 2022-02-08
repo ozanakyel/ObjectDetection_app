@@ -1,5 +1,5 @@
 <template>
-  <div class="project-area" style="height: 100px">
+  <div class="project-area">
     <div class="project-view">
       <div class="top">
         <div class="shower">
@@ -22,8 +22,8 @@
         </div>
       </div>
       <div class="body">
-        <div><img src="@/assets/favicon.png" width="100%"></div>
-        <div><img src="@/assets/favicon.png" width="100%"></div>
+        <div><img src="@/assets/favicon.png" width="100%" height="630"></div>
+        <div><img src="@/assets/favicon.png" width="100%" height="630"></div>
       </div>
       <div class="footer">
         <div>
@@ -114,7 +114,8 @@ export default {
     }
   },
   mounted () {
-    document.querySelector('.project-area').style.height = window.innerHeight + 'px'
+    console.log(window.innerHeight)
+    document.querySelector('.project-area').style.height = (window.innerHeight - document.querySelector('.navbar').offsetHeight) + 'px'
   }
 }
 </script>
