@@ -1,5 +1,5 @@
 <template>
-  <div class="project-area">
+  <div class="project-area" style="height: 100px">
     <div class="project-view">
       <div class="top">
         <div class="shower">
@@ -112,6 +112,9 @@ export default {
         document.querySelector('.settings-show').style.display = 'none'
       }
     }
+  },
+  mounted () {
+    document.querySelector('.project-area').style.height = window.innerHeight + 'px'
   }
 }
 </script>

@@ -4,7 +4,6 @@
     align-items: center;
     -webkit-box-shadow: 0px 6px 16px 0px rgba(221,221,221,0.73); 
     box-shadow: 0px 6px 16px 0px rgba(221, 221, 221, 0.24);
-    height: 100px;
 }
 .navbar .logo {
     width: 15%;
