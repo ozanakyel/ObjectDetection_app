@@ -25,7 +25,9 @@ SECRET_KEY = 'django-insecure-qghqyv*)cphk^7m8!%q7n*kyj=39hsq-$yxwwc8yb$+vu8l@rb
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 
 # Application definition
@@ -37,9 +39,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'corsheaders',
+    'SafetyZone'
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -75,10 +81,19 @@ WSGI_APPLICATION = 'ObjectDetection_app.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'mssql',
+        'NAME': 'Object_Detection',
+        'USER': 'dbuser',
+        'PASSWORD': '38887030636h',
+        'HOST': '127.0.0.1',
+        'PORT:': '1433',
+        "OPTIONS": {
+            'driver': 'ODBC Driver 17 for SQL Server',
+            'isolation_level': 'READ UNCOMMITTED'
+         },
     }
 }
+
 
 
 # Password validation
@@ -105,11 +120,15 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Istanbul'
+
+DATETIME_FORMAT= '%d-%m-%Y'
 
 USE_I18N = True
 
-USE_TZ = True
+USE_L10N = False
+
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
