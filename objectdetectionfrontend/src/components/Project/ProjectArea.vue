@@ -56,7 +56,34 @@
     </div>
     <div @click="hideSettings($event)" class="settings-show">
       <div class="settings">
-        asd
+        <div>
+          <div class="header">
+            <div><svg xmlns="http://www.w3.org/2000/svg" style="margin-bottom: 2px;" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-settings"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg></div>
+            <div><span style="margin-left: 3px;">Settings</span></div>
+          </div>
+          <div class="body">
+            <div id="inputs">
+              <div id="inputs-1">
+                <div class="inputs"><div>Kamera IP Adresi:</div> <div><input v-model="cameraIp" /></div></div>
+                <div class="inputs"><div>PLC IP Adresi:</div> <div><input v-model="plcIp" /></div></div>
+                <div class="inputs"><div>Tahminleme Min Oran %:</div> <div><input v-model="minOran" /></div></div>
+                <div class="inputs"><div>Maksimum Deneme Sayısı:</div> <div><input v-model="denemeSayisi" /></div></div>
+                <div class="inputs"><div>İstasyon Db Adres:</div> <div><input v-model="dbAdres" /></div></div>
+                <div class="inputs"><div>Operasyon Başladı mı DB:</div><div> <input v-model="basladimi" /></div></div>
+                <div class="inputs"><div>Operasyon Tamamlandı mı DB:</div> <div><input v-model="tamamlandimi" /></div></div>
+              </div>
+              <div id="inputs-2">
+                <div class="crop">
+                  <span class="head">Crop</span>
+                  <div class="inputs"><div>Başlangıç X:</div> <div><input v-model="x" /></div></div>
+                  <div class="inputs"><div>Başlangıç Y:</div> <div><input v-model="y" /></div></div>
+                  <div class="inputs"><div>X Mesafesi:</div> <div><input v-model="xRange" /></div></div>
+                  <div class="inputs"><div>Y Mesafesi:</div> <div><input v-model="yRange" /></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -70,7 +97,7 @@ export default {
   },
   methods: {
     settings () {
-      document.querySelector('.settings-show').style.display = 'block'
+      document.querySelector('.settings-show').style.display = 'flex'
     },
     hideSettings (event) {
       if (event.target.className === 'settings-show') {
