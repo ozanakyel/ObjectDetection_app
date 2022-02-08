@@ -1,3 +1,4 @@
 from django.db import models
 
-# Create your models here.
+class Project(models.Model):
+    cityID = models.AutoField(primary_key=True)
