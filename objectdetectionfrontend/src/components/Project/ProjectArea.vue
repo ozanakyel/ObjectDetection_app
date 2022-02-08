@@ -22,8 +22,8 @@
         </div>
       </div>
       <div class="body">
-        <div><img src="@/assets/favicon.png" width="100%" height="630"></div>
-        <div><img src="@/assets/favicon.png" width="100%" height="630"></div>
+        <div><img class="images" src="@/assets/eraser.png" width="100%" height="630"></div>
+        <div><img class="images" src="@/assets/eraser.png" width="100%" height="630"></div>
       </div>
       <div class="footer">
         <div>
@@ -114,8 +114,9 @@ export default {
     }
   },
   mounted () {
-    console.log(window.innerHeight)
-    document.querySelector('.project-area').style.height = (window.innerHeight - document.querySelector('.navbar').offsetHeight) + 'px'
+    // console.log(window.innerHeight)
+    // document.querySelector('.project-area').style.height = (window.innerHeight - document.querySelector('.navbar').offsetHeight) + 'px'
+    // console.log(document.querySelector('img.images').style.innerHeight)
   }
 }
 </script>
