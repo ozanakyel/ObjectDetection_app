@@ -23,7 +23,7 @@ export default {
     }
   },
   mounted () {
-    document.querySelector('.navbar').style.display = 'flex'
+    document.querySelector('.navbar').style.display = 'none'
   }
 }
 </script>
