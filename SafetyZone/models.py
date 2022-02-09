@@ -16,4 +16,4 @@ class Config(models.Model):
 class ProjectConfig(models.Model):
     projectID = models.ForeignKey(Project, default= None, on_delete=models.CASCADE)
     configKeyID = models.ForeignKey(Config, default= None, on_delete=models.CASCADE)
-    configValue = models.CharField(max_length=200)
+    configValue = models.CharField(max_length=200, null=True)
