@@ -6,25 +6,25 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
 import json
-from SafetyZone.camera import VideoCamera,VideoCameraObjectDetection, gen
+from SafetyZone.camera import VideoCamera,gen, gen2
 
 from SafetyZone.models import Project, Config, ProjectConfig
 from SafetyZone.serializers import ProjectSerializer,ConfigSerializer,ProjectConfigSerializer
 
-cam = VideoCamera()
-cam2 = VideoCameraObjectDetection()
 
+cam = VideoCamera()
 # configkeys = Config.objects.all().values()
 # for item in configkeys:
 #     print(item)
 
 @csrf_exempt
 def video_feed(request):
+    # JsonResponse("asd", safe=False)
 	return StreamingHttpResponse(gen(cam), content_type="multipart/x-mixed-replace;boundary=frame")
 
 @csrf_exempt
 def video_feed_object_detection(request):
-	return StreamingHttpResponse(gen(cam2), content_type="multipart/x-mixed-replace;boundary=frame")
+	return StreamingHttpResponse(gen2(cam), content_type="multipart/x-mixed-replace;boundary=frame")
 
 @csrf_exempt
 def get_projects(request, id = 0):

@@ -26,7 +26,7 @@
       </div>
       <div class="body">
         <div><img class="images" src="http://127.0.0.1:8000/video_feed" width="100%" height="630"></div>
-        <div><img class="images" src="http://127.0.0.1:8000/video_feed" width="100%" height="630"></div>
+        <div><img class="images" src="http://127.0.0.1:8000/object_detection" width="100%" height="630"></div>
       </div>
       <div class="footer">
         <div>
