@@ -1,5 +1,6 @@
 <template>
   <div class="project-area">
+    <Loader/>
     <div class="project-view">
       <div class="top">
         <div class="shower" style="position: relative;">
@@ -101,10 +102,15 @@
 </template>
 
 <script>
+import Loader from '@/components/Loader.vue'
+
 export default {
   name: 'ProjectArea',
   props: {
     msg: String
+  },
+  components: {
+    Loader
   },
   methods: {
     settings () {
@@ -129,6 +135,13 @@ export default {
     }
     // document.querySelector('.exit').addEventListener('click', this.goToHome())
     // console.log(document.querySelector('img.images').style.innerHeight)
+  },
+  updated () {
+    var images = document.querySelectorAll('images')
+    console.log(images)
+    // if (document.querySelectorAll().length > 0) {
+    //   $('.loader-scene').css({ display: 'none' })
+    // }
   }
 }
 </script>

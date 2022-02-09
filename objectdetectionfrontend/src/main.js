@@ -14,5 +14,6 @@ import '@/css/app.css'
 import '@/css/Home_css/navbar.css'
 import '@/css/Project_css/project.css'
 import '@/css/Project_css/settings.css'
+import '@/css/Loader_css/loader.css'
 
 createApp(App).use(store).use(router).use(BootstrapVue3).mount('#app')
