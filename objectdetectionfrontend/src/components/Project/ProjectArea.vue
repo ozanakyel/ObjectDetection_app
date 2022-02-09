@@ -3,7 +3,7 @@
     <Loader/>
     <div class="project-view">
       <div class="top">
-        <div class="shower" style="position: relative;">
+        <div @click="check" class="shower" style="position: relative;">
           MIFI - Object Detection / SafetyZone
           <div @click="goToHome" class="exit" style="position:absolute;right:0;top: -8px;text-align: right;padding:8px 12px 8px 5px;cursor: pointer;">
             <span style="font-size: 11px; color: red;margin-right: 3px;">Çıkış</span><svg xmlns="http://www.w3.org/2000/svg" style="color: red" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-log-out"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
@@ -125,6 +125,11 @@ export default {
       this.$router.push({
         name: 'Home'
       })
+    },
+    check () {
+      var images = document.querySelectorAll('.images')
+      console.log(images[0].offsetWidth)
+      // console.log(images[0].attributes[1].isConnected)
     }
   },
   mounted () {
@@ -133,15 +138,15 @@ export default {
     if (Number(document.querySelector('.project-area').offsetHeight) < Number(window.innerHeight)) {
       document.querySelector('.project-area').style.height = (window.innerHeight) + 'px'
     }
+    // var images = document.querySelectorAll('.images')
+    // console.log(images[0].offsetWidth)
+    // if (images[0].attributes[1].isConnected === true) {
+    //   document.querySelector('.loader-scene').style.display = 'none'
+    // }
     // document.querySelector('.exit').addEventListener('click', this.goToHome())
     // console.log(document.querySelector('img.images').style.innerHeight)
-  },
-  updated () {
-    var images = document.querySelectorAll('images')
-    console.log(images)
-    // if (document.querySelectorAll().length > 0) {
-    //   $('.loader-scene').css({ display: 'none' })
-    // }
   }
+  // updated () {
+  // }
 }
 </script>
