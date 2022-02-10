@@ -20,8 +20,8 @@ from PIL import Image
 #to capture video class
 class VideoCamera(object):
     def __init__(self):
-        self.video = cv2.VideoCapture('http://192.168.1.38:8081/video')
-        # self.video = cv2.VideoCapture(0)
+        # self.video = cv2.VideoCapture('http://192.168.1.38:8081/video')
+        self.video = cv2.VideoCapture(0)
         (self.grabbed, self.frame) = self.video.read()
         threading.Thread(target=self.update, args=()).start()
         self.detect = object_detector.ObjectDetection()

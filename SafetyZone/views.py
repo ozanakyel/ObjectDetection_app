@@ -34,8 +34,8 @@ def video_feed_object_detection(request):
 
 @csrf_exempt
 def get_projects(request, id = 0):
-    # if request.method == "GET":
-    #     projects = Project.objects.all()
-    #     projects_serializer = ProjectSerializer(projects, many = True)
-    #     return JsonResponse(projects_serializer.data, safe=False)
-    return JsonResponse("asd", safe=False)
+    if request.method == "GET":
+        projects = Project.objects.all()
+        projects_serializer = ProjectSerializer(projects, many = True)
+        return JsonResponse(projects_serializer.data, safe=False)
+    # return JsonResponse("asd", safe=False)

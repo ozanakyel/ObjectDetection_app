@@ -106,7 +106,7 @@ class ObjectDetection(object):
             use_normalized_coordinates=True,
             line_thickness=2,
             min_score_thresh=0.7,
-            max_boxes_to_draw=12)
+            max_boxes_to_draw=1)
 
         pts = np.array([[1900, 1079], [1900, 70], 
                 [150, 70], [150, 1079]], np.int32)
@@ -124,7 +124,7 @@ class ObjectDetection(object):
         x = image.shape[0]
         y = image.shape[1]
         d1 = ImageDraw.Draw(Image.fromarray(image))
-        for i in range(min(12, a.shape[0])):
+        for i in range(min(1, a.shape[0])):
             if b is None or b[i] > 0.7:
                 box = tuple(a[i].tolist())
                 # print('-------Class-------')
