@@ -45,7 +45,6 @@ class VideoCamera(object):
         image_detected, isIn = self.detect.object_detection(image)
         _, image = cv2.imencode('.jpg', image_detected)
         if (isIn == True):
-            print(image)
             image_name = str(self.i) + '_detected' +'.jpg'
             image_name_orj = str(self.i) +'.jpg'
             self.i += 1
@@ -54,8 +53,6 @@ class VideoCamera(object):
             # print(os.path.join(configs[50]['configValue'], image_name), 'olarak kaydedildi')
             path = str(datetime.date.today()) + '.txt'
             direction =  os.path.join(str(serverLogLocation), path)
-            print(direction)
-            print(os.path.exists(direction))
             if not os.path.exists(direction):
                 with open( direction , 'w+') as f:
                     f.write(str(os.path.join(imageSaveLocation, image_name_orj)) + ' olarak kaydedildi')

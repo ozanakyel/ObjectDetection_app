@@ -137,10 +137,10 @@ class ObjectDetection(object):
                 if ( startpoint[0] < 1900 and startpoint[0] > 150 and endpoint[0] < 1900 and endpoint[0] > 150 and startpoint[1] < 1081 and startpoint[1] > 70 and endpoint[1] < 1081 and endpoint[1] > 70):
                     print("icinde")
                     isIn = True
-                    # d1.text((0, 0), "NOK", fill =(255, 0, 0))
+                    image = cv2.putText(image, 'OK', (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 1, cv2.LINE_AA)
                 else:
                     print("icinde degil")
                     isIn = False
-                    # d1.text((0, 0), "OK", fill =(255, 0, 0))
+                    image = cv2.putText(image, 'NOK', (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 1, cv2.LINE_AA)
 
         return image, isIn
