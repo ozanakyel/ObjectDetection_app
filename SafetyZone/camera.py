@@ -15,12 +15,13 @@ from django.views.decorators import gzip
 from django.http import StreamingHttpResponse
 import cv2
 import threading
+from PIL import Image
 
 #to capture video class
 class VideoCamera(object):
     def __init__(self):
-        # self.video = cv2.VideoCapture('http://192.168.1.38:8081/video')
-        self.video = cv2.VideoCapture(0)
+        self.video = cv2.VideoCapture('http://192.168.1.38:8081/video')
+        # self.video = cv2.VideoCapture(0)
         (self.grabbed, self.frame) = self.video.read()
         threading.Thread(target=self.update, args=()).start()
         self.detect = object_detector.ObjectDetection()
@@ -35,11 +36,8 @@ class VideoCamera(object):
         _, image = cv2.imencode('.jpg', image_detected)
         return jpeg.tobytes(),image.tobytes()
 
-    # def get_frame2(self):
-    #     image = self.frame
-    #     image_detected = self.detect.object_detection(image)
-    #     _, jpeg = cv2.imencode('.jpg', image_detected)
-    #     return jpeg.tobytes()
+    # def get_box(self):
+    #     self.detect.get_boxes()
 
     def update(self):
         while True:
@@ -57,83 +55,10 @@ def gen2(camera):
         yield (b'--frame\r\n'
                b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
 
-
-# import os,urllib.request
-# from cv2 import cv2
-# import numpy as np
-# from django.conf import settings
-# from SafetyZone import object_detector
-# import logging
-# from threading import Thread
-# import time
-
-# from django.http import HttpResponse
-# from django.shortcuts import render
-# from .models import *
-# from django.core.mail import EmailMessage
-# from django.views.decorators import gzip
-# from django.http import StreamingHttpResponse
-# import cv2
-# import threading
-
-# video = cv2.VideoCapture(0)
-# #to capture video class
-# class VideoCamera(object):
-#     def __init__(self):
-#         # self.video = cv2.VideoCapture('http://192.168.1.38:8081/video')
-#         self.video = video
-#         (self.grabbed, self.frame) = self.video.read()
-#         threading.Thread(target=self.update, args=()).start()
-#         # self.detect = object_detector.ObjectDetection()
-
-#     def __del__(self):
-#         self.video.release()
-
-#     def get_frame(self):
-#         image = self.frame
-#         # image_detected = self.detect.object_detection(image)
-#         _, jpeg = cv2.imencode('.jpg', image)
-#         return jpeg.tobytes()
-
-#     def update(self):
-#         while True:
-#             (self.grabbed, self.frame) = self.video.read()
-
-# class VideoCameraObjectDetection(object):
-#     def __init__(self):
-#         # self.video = cv2.VideoCapture('http://192.168.1.38:8081/video')
-#         self.video = video
-#         (self.grabbed, self.frame) = self.video.read()
-#         threading.Thread(target=self.update, args=()).start()
-#         self.detect = object_detector.ObjectDetection()
-
-#     def __del__(self):
-#         self.video.release()
-
-#     def get_frame(self):
-#         image = self.frame
-#         image_detected = self.detect.object_detection(image)
-#         _, jpeg = cv2.imencode('.jpg', image_detected)
-#         _, img = cv2.imencode('.jpg', image)
-#         return jpeg.tobytes(), img.tobytes()
-
-#     def update(self):
-#         while True:
-#             (self.grabbed, self.frame) = self.video.read()
-
-# def gen(camera):
+# def boxes(box):
 #     while True:
-#         frame,image = camera.get_frame()
-#         yield (b'--frame\r\n'
-#                b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
-#         yield (b'--image\r\n'
-#                b'Content-Type: image/jpeg\r\n\r\n' + image + b'\r\n\r\n')
-               
-# def gen2(camera):
-#     while True:
-#         frame = camera.get_frame()
-#         yield (b'--frame\r\n'
-#                b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
-
-
-
+#         boxes,clases = box.get_boxes()
+#         print('-------Class-------')
+#         print(clases)
+#         print('-------Box-------')
+#         print(boxes)

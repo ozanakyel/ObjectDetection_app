@@ -5,6 +5,11 @@ import tensorflow as tf
 import sys
 import time
 
+from PIL import Image
+from PIL import ImageFont
+from PIL import ImageDraw 
+from numpy import asarray
+
 # This is needed since the notebook is stored in the object_detection folder.
 sys.path.append("..")
 
@@ -103,8 +108,36 @@ class ObjectDetection(object):
             min_score_thresh=0.7,
             max_boxes_to_draw=12)
 
-        # All the results have been drawn on image. Now display the image.
-        #cv2.imwrite(r".\asd.jpg",image)
-        # print('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$')
+        pts = np.array([[1900, 1079], [1900, 70], 
+                [150, 70], [150, 1079]], np.int32)
+        pts = pts.reshape((-1, 1, 2))
+        isClosed = True
+        # Blue color in BGR
+        color = (255, 0, 0)
+        # Line thickness of 2 px
+        thickness = 2
+        image = cv2.polylines(image, [pts], isClosed, color, thickness)
+
+        a = np.squeeze(boxes)
+        b = np.squeeze(scores)
+        c = np.squeeze(classes).astype(np.int32)
+        x = image.shape[0]
+        y = image.shape[1]
+        d1 = ImageDraw.Draw(Image.fromarray(image))
+        for i in range(min(12, a.shape[0])):
+            if b is None or b[i] > 0.7:
+                box = tuple(a[i].tolist())
+                # print('-------Class-------')
+                # print(c[i])
+                # print('-------Box-------')
+                # print(box)
+                startpoint = (int(y*box[1]), int(x*box[0]))
+                endpoint = (int(y*box[3]), int(x*box[2]))
+                if ( startpoint[0] < 1900 and startpoint[0] > 150 and endpoint[0] < 1900 and endpoint[0] > 150 and startpoint[1] < 1081 and startpoint[1] > 70 and endpoint[1] < 1081 and endpoint[1] > 70):
+                    print("icinde")
+                    # d1.text((0, 0), "NOK", fill =(255, 0, 0))
+                else:
+                    print("icinde degil")
+                    # d1.text((0, 0), "OK", fill =(255, 0, 0))
 
         return image
