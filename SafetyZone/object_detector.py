@@ -20,7 +20,7 @@ from SafetyZone.object_detection.utils import visualization_utils as vis_util
 from tensorflow import ConfigProto
 from tensorflow import InteractiveSession
 
-
+isIn = None
 class ObjectDetection(object):
     def __init__(self):
         print("**********************************")
@@ -135,12 +135,12 @@ class ObjectDetection(object):
                 startpoint = (int(y*box[1]), int(x*box[0]))
                 endpoint = (int(y*box[3]), int(x*box[2]))
                 if ( startpoint[0] < 1900 and startpoint[0] > 150 and endpoint[0] < 1900 and endpoint[0] > 150 and startpoint[1] < 1081 and startpoint[1] > 70 and endpoint[1] < 1081 and endpoint[1] > 70):
-                    if isIn == False:
-                        image = cv2.putText(image, 'OK', (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 1, cv2.LINE_AA)
+                    # if isIn == False:
+                    #     image = cv2.putText(image, 'OK', (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 1, cv2.LINE_AA)
                     isIn = True
                 else:
-                    if isIn == True:
-                        image = cv2.putText(image, 'NOK', (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 1, cv2.LINE_AA)
+                    # if isIn == False:
+                    #     image = cv2.putText(image, 'NOK', (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 1, cv2.LINE_AA)
                     isIn = False
 
         return image, isIn
