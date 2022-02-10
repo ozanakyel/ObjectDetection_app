@@ -8,7 +8,7 @@ import time
 from PIL import Image
 from PIL import ImageFont
 from PIL import ImageDraw 
-from numpy import asarray
+from numpy import asarray, isin
 
 # This is needed since the notebook is stored in the object_detection folder.
 sys.path.append("..")
@@ -19,6 +19,7 @@ from SafetyZone.object_detection.utils import visualization_utils as vis_util
 
 from tensorflow import ConfigProto
 from tensorflow import InteractiveSession
+
 
 class ObjectDetection(object):
     def __init__(self):
@@ -135,9 +136,11 @@ class ObjectDetection(object):
                 endpoint = (int(y*box[3]), int(x*box[2]))
                 if ( startpoint[0] < 1900 and startpoint[0] > 150 and endpoint[0] < 1900 and endpoint[0] > 150 and startpoint[1] < 1081 and startpoint[1] > 70 and endpoint[1] < 1081 and endpoint[1] > 70):
                     print("icinde")
+                    isIn = True
                     # d1.text((0, 0), "NOK", fill =(255, 0, 0))
                 else:
                     print("icinde degil")
+                    isIn = False
                     # d1.text((0, 0), "OK", fill =(255, 0, 0))
 
-        return image
+        return image, isIn
