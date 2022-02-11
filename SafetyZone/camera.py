@@ -31,7 +31,6 @@ class VideoCamera(object):
         threading.Thread(target=self.update, args=(), daemon=True).start()
         self.detect = object_detector.ObjectDetection()
         # self.detect.setDaemon(True)
-        self.i = 0
 
     def __del__(self):
         self.video.release()
@@ -67,7 +66,7 @@ def gen2(camera):
 
 def draw_polly_and_check_isin(image, boxes, scores, classes, isIn):
     class_id, poly_point_list, is_object_have, reverse = rois.get_rois("C:/Users/Harun/Desktop/ObjectDetection_app/SafetyZone/rois.json")
-    print(poly_point_list)
+    # print(poly_point_list)
     pts = np.array(poly_point_list[0], np.int32)
     pts = pts.reshape((-1, 1, 2))
     isClosed = True

@@ -4,7 +4,6 @@ from datetime import date, datetime,timedelta
 from django.http.response import StreamingHttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
-from SafetyZone import object_detector
 from django.http.response import JsonResponse
 import json
 from SafetyZone.camera import VideoCamera,gen, gen2
@@ -14,14 +13,6 @@ from SafetyZone.serializers import ProjectSerializer,ConfigSerializer,ProjectCon
 
 
 cam = VideoCamera() 
-box = object_detector.ObjectDetection()
-# configkeys = Config.objects.all().values()
-# for item in configkeys:
-#     print(item)
-# values = ProjectConfig.objects.all().values()
-# for item in values:
-#     print(item['configKeyID_id'])
-#     print(item['configValue'])
 
 @csrf_exempt
 def video_feed(request):
