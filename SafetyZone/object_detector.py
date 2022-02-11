@@ -47,12 +47,7 @@ class ObjectDetection(object):
         # Path to image
         # PATH_TO_IMAGE = os.path.join(r'C:\Users\ozan.akyel\Desktop\project 2021\siperlik toka\v4\valid',IMAGE_NAME) ################################# geri alman gerekebilir
 
-
         # Load the label map.
-        # Label maps map indices to category names, so that when our convolution
-        # network predicts `5`, we know that this corresponds to `king`.
-        # Here we use internal utility functions, but anything that returns a
-        # dictionary mapping integers to appropriate string labels would be fine
         self.label_map = label_map_util.load_labelmap(self.PATH_TO_LABELS)
         self.categories = label_map_util.convert_label_map_to_categories(self.label_map, max_num_classes=self.NUM_CLASSES, use_display_name=True)
         self.category_index = label_map_util.create_category_index(self.categories)
@@ -91,7 +86,6 @@ class ObjectDetection(object):
         image_expanded = np.expand_dims(image_rgb, axis=0)
 
         # Perform the actual detection by running the model with the image as input
-        # print('####################################')
         (boxes, scores, classes, num) = self.sess.run(
             [self.detection_boxes, self.detection_scores, self.detection_classes, self.num_detections],
             feed_dict={self.image_tensor: image_expanded})
@@ -109,38 +103,4 @@ class ObjectDetection(object):
             min_score_thresh=0.7,
             max_boxes_to_draw=1)
 
-        pts = np.array([[1900, 1079], [1900, 70], 
-                [150, 70], [150, 1079]], np.int32)
-        pts = pts.reshape((-1, 1, 2))
-        isClosed = True
-        # Blue color in BGR
-        color = (255, 0, 0)
-        # Line thickness of 2 px
-        thickness = 2
-        image = cv2.polylines(image, [pts], isClosed, color, thickness)
-
-        a = np.squeeze(boxes)
-        b = np.squeeze(scores)
-        c = np.squeeze(classes).astype(np.int32)
-        x = image.shape[0]
-        y = image.shape[1]
-        d1 = ImageDraw.Draw(Image.fromarray(image))
-        for i in range(min(1, a.shape[0])):
-            if b is None or b[i] > 0.7:
-                box = tuple(a[i].tolist())
-                # print('-------Class-------')
-                # print(c[i])
-                # print('-------Box-------')
-                # print(box)
-                startpoint = (int(y*box[1]), int(x*box[0]))
-                endpoint = (int(y*box[3]), int(x*box[2]))
-                if ( startpoint[0] < 1900 and startpoint[0] > 150 and endpoint[0] < 1900 and endpoint[0] > 150 and startpoint[1] < 1081 and startpoint[1] > 70 and endpoint[1] < 1081 and endpoint[1] > 70):
-                    # if isIn == False:
-                    #     image = cv2.putText(image, 'OK', (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 1, cv2.LINE_AA)
-                    isIn = True
-                else:
-                    # if isIn == False:
-                    #     image = cv2.putText(image, 'NOK', (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 1, cv2.LINE_AA)
-                    isIn = False
-
-        return image, isIn
+        return image, isIn, boxes, scores, classes
