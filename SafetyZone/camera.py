@@ -67,6 +67,7 @@ def gen2(camera):
 
 def draw_polly_and_check_isin(image, boxes, scores, classes, isIn):
     class_id, poly_point_list, is_object_have, reverse = rois.get_rois(rois_path)
+    RoiAlign = ProjectConfig.objects.filter(configKeyID_id = 53).values()
     # print(poly_point_list)
     pts = np.array(poly_point_list[0], np.int32)
     pts = pts.reshape((-1, 1, 2))
@@ -86,7 +87,7 @@ def draw_polly_and_check_isin(image, boxes, scores, classes, isIn):
     for i in range(min(1, boxes.shape[0])):
         if scores is None or scores[i] > 0.7:
             box = tuple(boxes[i].tolist())
-            print(check_rois(image, poly_point_list[0], box, "middlecenter"))
+            print(check_rois(image, poly_point_list[0], box, RoiAlign[0]['configValue']))
 
 
 

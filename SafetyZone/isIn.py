@@ -15,11 +15,11 @@ def check_rois(image, polygon, box, position):
     y_min = box[1] * height
     x_max = box[2] * width
     y_max = box[3] * height
-    if position == 'bottomcenter':
-        point = (x_max-(x_max-x_min/2), y_max)
+    if position == 'BottomCenter':
+        point = (x_max-((x_max-x_min)/2), y_max)
     if position == 'middlecenter':
         point = (x_max-((x_max-x_min)/2), y_max-(y_max-y_min)/2)
-
+        
     pointX = Point(point)
     polygon = Polygon(polygon)
 
