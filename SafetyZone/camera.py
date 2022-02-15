@@ -1,4 +1,4 @@
-import os,urllib.request
+import os
 from cv2 import cv2
 import numpy as np
 from django.conf import settings
@@ -12,9 +12,9 @@ import time
 
 from django.shortcuts import render
 from .models import *
+from .log_functions import *
 import cv2
 import threading
-import datetime
 from SafetyZone import rois 
 # from .plc import Plc
 
@@ -23,8 +23,6 @@ from SafetyZone.models import Project, Config, ProjectConfig
 # configs = ProjectConfig.objects.filter(projectID_id = 1).values()
 # imageSaveLocation = configs[49]['configValue']
 # serverLogLocation = configs[45]['configValue']
-# imageSaveLocation = configs[49]['configValue']
-serverLogLocation = r"C:\Users\Harun\Desktop\serverlog"
 
 # PLC = Plc('10.15.221.254', PlcRack=0, PlcSlot=1)
 # PLC2 = Plc('10.15.221.254', PlcRack=0, PlcSlot=1)
@@ -51,10 +49,14 @@ class VideoCamera(object):
 
     def get_frame(self, method):
         image = self.frame
+        orj_image = image.copy()
         _, jpeg = cv2.imencode('.jpg', image)
         image_detected, isIn, boxes, scores, classes = self.detect.object_detection(image)
         image_detected = draw_polly_and_check_isin(image_detected, boxes, scores, classes, isIn , method)
         _, image = cv2.imencode('.jpg', image_detected)
+        # # LOG
+        # log_for_processed_image(orj_image, image_detected)
+        # #############
         return jpeg.tobytes(), image.tobytes()
 
     def update(self):
@@ -115,36 +117,16 @@ def draw_polly_and_check_isin(image, boxes, scores, classes, isIn, method):
     # print(isIn)
     # if isIn != PLC2.bit_value:
     #     if method == "DETECTION":
-    #         print("Sonuç değişti -**- ")
-    #         print("PLC'den okunan deger: " + str(PLC2.bit_value))
-    #         print("Detection sonucu : " + str(isIn))
+    #        log_array = []
+    #        log_array[0] = print("Sonuç değişti -**- ")
+    #        log_array[1] = print("PLC'den okunan deger: " + str(PLC2.bit_value))
+    #        log_array[2] = print("Detection sonucu : " + str(isIn))
+    #        #LOG
+    #        log_for_plc_bit_change(log_array)
+    #        ###########
     #         if isIn!= None:
     #             PLC3.Set_bit(DB=90, DBX=4, DB_X=1, value=isIn)
     #         else:
     #             pass
-
-
-
-    # image_name = str(datetime.datetime.now()).replace(" ", "_").replace(".",":") + '_detected' +'.jpg'
-    # image_name_orj = str(datetime.datetime.now()).replace(" ", "_").replace(".",":") +'.jpg'
-    # # cv2.imwrite(os.path.join(imageSaveLocation, image_name_orj), image_orj)
-    # # cv2.imwrite(os.path.join(imageSaveLocation, image_name), image_detected)
-    # # print(os.path.join(configs[50]['configValue'], image_name), 'olarak kaydedildi')
-    # path = str(datetime.date.today()) + '.txt'
-    # direction =  os.path.join(str(serverLogLocation), path)
-    # if not os.path.exists(direction):
-    #     with open( direction , 'w+') as f:
-    #         f.write(str(os.path.join(imageSaveLocation, image_name_orj)) + ' olarak kaydedildi')
-    #         f.write('\n')
-    #         f.write(str(os.path.join(imageSaveLocation, image_name)) + ' olarak kaydedildi')
-    #         f.write('\n')
-    #         f.close()
-    # else:
-    #     with open( direction , 'a') as f:
-    #         f.write(str(os.path.join(imageSaveLocation, image_name_orj)) + ' olarak kaydedildi')
-    #         f.write('\n')
-    #         f.write(str(os.path.join(imageSaveLocation, image_name)) + ' olarak kaydedildi')
-    #         f.write('\n')
-    #         f.close()
     return image
 
