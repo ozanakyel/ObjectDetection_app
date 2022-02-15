@@ -13,17 +13,17 @@ def get_rois(file_path):
     PolyPointList = []
     IsObjectHave = []
     Reverse = []
-    for line in Lines:
+    for index, line in enumerate(Lines):
         sayac+=1
         if not (sayac == len(Lines) or sayac == 1):
             json_acceptable_string = str(line).replace("'", "\"")
 
             if json_acceptable_string[-2] == ",":
                 json_acceptable_string = json_acceptable_string[: -2]
-            # print(json_acceptable_string)
             ClassId.append(json.loads(json_acceptable_string)["ClassId"])
             IsObjectHave.append(json.loads(json_acceptable_string)["IsObjectHave"])
             Reverse.append(json.loads(json_acceptable_string)["Reverse"])
+            res = []
             res.append(json.loads(json_acceptable_string)["PolyPointList"])
             point = []
             for i in res[0]:

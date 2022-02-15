@@ -101,6 +101,6 @@ class ObjectDetection(object):
             use_normalized_coordinates=True,
             line_thickness=2,
             min_score_thresh=0.7,
-            max_boxes_to_draw=1)
+            max_boxes_to_draw=12)
 
         return image, isIn, boxes, scores, classes

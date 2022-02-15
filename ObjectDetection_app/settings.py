@@ -79,18 +79,24 @@ WSGI_APPLICATION = 'ObjectDetection_app.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'mssql',
+#         'NAME': 'Object_Detection',
+#         'USER': 'dbuser',
+#         'PASSWORD': '38887030636h',
+#         'HOST': '127.0.0.1',
+#         'PORT:': '1433',
+#         "OPTIONS": {
+#             'driver': 'ODBC Driver 17 for SQL Server',
+#             'isolation_level': 'READ UNCOMMITTED'
+#          },
+#     }
+# }
 DATABASES = {
     'default': {
-        'ENGINE': 'mssql',
-        'NAME': 'Object_Detection',
-        'USER': 'dbuser',
-        'PASSWORD': '38887030636h',
-        'HOST': '127.0.0.1',
-        'PORT:': '1433',
-        "OPTIONS": {
-            'driver': 'ODBC Driver 17 for SQL Server',
-            'isolation_level': 'READ UNCOMMITTED'
-         },
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'mydatabase',
     }
 }
 
