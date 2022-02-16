@@ -29,6 +29,7 @@
         <div><img class="images" src="http://127.0.0.1:8000/video_feed" width="100%" height="630"></div>
         <div><img class="images" src="http://127.0.0.1:8000/object_detection" width="100%" height="630"></div>
       </div>
+      <p class="data">{{data}}</p>
       <div class="footer">
         <div>
           <div class="info">
@@ -111,7 +112,8 @@ export default {
   },
   data () {
     return {
-      connection: null
+      connection: null,
+      data: []
     }
   },
   components: {
@@ -154,22 +156,24 @@ export default {
     if (Number(document.querySelector('.project-area').offsetHeight) < Number(window.innerHeight)) {
       document.querySelector('.project-area').style.height = (window.innerHeight) + 'px'
     }
-    fetch('http://127.0.0.1:8000/get_projects', {
-      method: 'GET'
-    })
-      .then(response => response.json())
-      .then(data => {
-        console.log(data)
-      })
-    setInterval(function () {
-      fetch('http://127.0.0.1:8000/get_projects', {
-        method: 'GET'
-      })
-        .then(response => response.json())
-        .then(data => {
-          console.log(data)
-        })
-    }, 1000)
+    // fetch('http://127.0.0.1:8000/get_projects', {
+    //   method: 'GET'
+    // })
+    //   .then(response => response.json())
+    //   .then(data => {
+    //     this.data = data
+    //     document.querySelector('.data').innerHTML = this.data
+    //   })
+    // setInterval(function () {
+    //   fetch('http://127.0.0.1:8000/get_projects', {
+    //     method: 'GET'
+    //   })
+    //     .then(response => response.json())
+    //     .then(data => {
+    //       this.data = data
+    //       document.querySelector('.data').innerHTML = this.data
+    //     })
+    // }, 15000)
     // var images = document.querySelectorAll('.images')
     // console.log(images[0].offsetWidth)
     // if (images[0].attributes[1].isConnected === true) {
