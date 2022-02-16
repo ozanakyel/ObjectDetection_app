@@ -44,12 +44,6 @@ class_id, poly_point_list, is_object_have, reverse = rois.get_rois(rois_path)
 class VideoCamera(object):
     def __init__(self):
         # self.video = cv2.VideoCapture('rtsp://admin:Abc1234*@10.16.222.253/')
-        # LOG
-        log_array = {"type": [],"content": []}
-        log_array["type"].append("debug")
-        log_array["content"].append(str(f"Kamera Goruntusu Islenmeye Baslandi"))
-        log_for_plc_bit_change(log_array)
-        ####################
         try:
             self.video = cv2.VideoCapture(0)
         except:
@@ -63,6 +57,12 @@ class VideoCamera(object):
         (self.grabbed, self.frame) = self.video.read()
         threading.Thread(target=self.update, args=(), daemon=True).start()
         self.detect = object_detector.ObjectDetection()
+        # LOG
+        log_array = {"type": [],"content": []}
+        log_array["type"].append("debug")
+        log_array["content"].append(str(f"Kamera Goruntusu Islenmeye Hazir Hale Getirildi"))
+        log_for_plc_bit_change(log_array)
+        ####################
         # self.detect.setDaemon(True)
 
     def __del__(self):
@@ -70,28 +70,31 @@ class VideoCamera(object):
 
     def get_frame(self, method):
         image = self.frame
-        # LOG
-        log_array = {"type": [],"content": []}
-        log_array["type"].append("debug")
-        log_array["content"].append(str(f"Kameradaki Frame Alindi."))
-        log_for_plc_bit_change(log_array)
-        ####################
+        if method == "DETECTION":
+            # LOG
+            log_array = {"type": [],"content": []}
+            log_array["type"].append("debug")
+            log_array["content"].append(str(f"Kameradaki Frame Alindi."))
+            log_for_plc_bit_change(log_array)
+            ####################
         orj_image = image.copy()
         _, jpeg = cv2.imencode('.jpg', image)
         image_detected, isIn, boxes, scores, classes = self.detect.object_detection(image)
-        # LOG
-        log_array = {"type": [],"content": []}
-        log_array["type"].append("debug")
-        log_array["content"].append(str(f"Frame, Goruntu Islemeden Dondu."))
-        log_for_plc_bit_change(log_array)
-        ####################
+        if method == "DETECTION":
+            # LOG
+            log_array = {"type": [],"content": []}
+            log_array["type"].append("debug")
+            log_array["content"].append(str(f"Frame, Goruntu Islemeden Dondu."))
+            log_for_plc_bit_change(log_array)
+            ####################
         image_detected = draw_polly_and_check_isin(image_detected, boxes, scores, classes, isIn , method)
-        # LOG
-        log_array = {"type": [],"content": []}
-        log_array["type"].append("debug")
-        log_array["content"].append(str(f"Frame, Polly cizimi ve Icindemi Kontrolunden Dondu"))
-        log_for_plc_bit_change(log_array)
-        ####################
+        if method == "DETECTION":
+            # LOG
+            log_array = {"type": [],"content": []}
+            log_array["type"].append("debug")
+            log_array["content"].append(str(f"Frame, Polly cizimi ve Icindemi Kontrolunden Dondu"))
+            log_for_plc_bit_change(log_array)
+            ####################
         _, image = cv2.imencode('.jpg', image_detected)
         # # LOG
         # log_for_processed_image(orj_image, image_detected)

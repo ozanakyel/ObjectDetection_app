@@ -114,7 +114,7 @@ class ObjectDetection(object):
         # LOG
         log_array = {"type": [],"content": []}
         log_array["type"].append("debug")
-        log_array["content"].append(str("Object Detection Başlatildi."))
+        log_array["content"].append(str("Object Detection Baslatildi."))
         log_for_plc_bit_change(log_array)
         ####################
         vis_util.visualize_boxes_and_labels_on_image_array(
