@@ -1,9 +1,11 @@
 import datetime
 import os
 import cv2
+from .log_for_frontend import Log
 
 imageSaveLocation = r"C:\Users\Harun\Desktop\imagesave"
 serverLogLocation = r"C:\Users\Harun\Desktop\serverlog"
+log_frontend = Log()
 def log_for_processed_image(image_orj, image_detected):
     image_name = str(datetime.datetime.now()).replace(" ", "_").replace(".",":") + '_detected' +'.jpg'
     image_name_orj = str(datetime.datetime.now()).replace(" ", "_").replace(".",":") +'.jpg'
@@ -44,14 +46,18 @@ def log_for_plc_bit_change(log_array):
                 f.write("\n")
                 f.write('{:<10}'.format(log_array["type"][item]))
                 f.write('{:<150}'.format(log_array["content"][item]))
-                f.write(str(datetime.datetime.now()).replace(" ", "_").replace(".",":"))
+                time = str(datetime.datetime.now()).replace(" ", "_").replace(".",":")
+                f.write(time)
                 f.write('\n')
                 f.close()
+            log_frontend.log_for_frontend(log_array["type"][item], log_array["content"][item], time)
         else:
             with open( direction , 'a') as f:
                 f.write('{:<10}'.format(log_array["type"][item]))
                 f.write('{:<150}'.format(log_array["content"][item]))
-                f.write(str(datetime.datetime.now()).replace(" ", "_").replace(".",":"))
+                time = str(datetime.datetime.now()).replace(" ", "_").replace(".",":")
+                f.write()
                 f.write('\n')
                 f.close()
                 f.close()
+            log_frontend.log_for_frontend(log_array["type"][item], log_array["content"][item], time)

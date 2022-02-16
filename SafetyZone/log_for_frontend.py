@@ -1,10 +1,11 @@
 class Log():
     def __init__(self):
-        self.log_array = {'type': [], 'content': []}
+        self.log_array = {'type': [], 'content': [], 'time': []}
     
-    def log_for_frontend(self, log_array_type, log_array_content):
+    def log_for_frontend(self, log_array_type, log_array_content, time):
         self.log_array["type"].append(log_array_type)
         self.log_array["content"].append(log_array_content)
+        self.log_array["time"].append(time)
     
 # # LOG
 # log_for_frontend = Log()
