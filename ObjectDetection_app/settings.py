@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
-    'channels',
     'SafetyZone'
 ]
 
@@ -75,13 +74,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'ObjectDetection_app.wsgi.application'
-ASGI_APPLICATION = 'ObjectDetection_app.routing.application'
 
-CHANNEL_LAYERS = {
-    "default": {
-        "BACKEND": "channels.layers.InMemoryChannelLayer"
-    },
-}
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases

@@ -38,7 +38,7 @@ def get_projects(request, id = 0):
         log_array = {"type": [],"content": []}
         result = log_for_plc_bit_change(log_array)
         print(result)
-        return JsonResponse(projects_serializer.data, safe=False)
+        return JsonResponse(result, safe=False)
     # return JsonResponse("asd", safe=False)
 # requests.get('http://127.0.0.1:8000/video_feed')
 # requests.get('http://127.0.0.1:8000/object_detection')
