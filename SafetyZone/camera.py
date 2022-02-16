@@ -22,7 +22,7 @@ from SafetyZone.models import Project, Config, ProjectConfig
 # LOG
 log_array = {"type": [],"content": []}
 log_array["type"].append("debug")
-log_array["content"].append(str("camera.py Kütüphaneleri Yüklendi"))
+log_array["content"].append(str("camera.py Kutuphaneleri Yuklendi"))
 log_for_plc_bit_change(log_array)
 ####################
 
@@ -47,7 +47,7 @@ class VideoCamera(object):
         # LOG
         log_array = {"type": [],"content": []}
         log_array["type"].append("debug")
-        log_array["content"].append(str(f"Kamera Görüntüsü Islenmeye Baslandi"))
+        log_array["content"].append(str(f"Kamera Goruntusu Islenmeye Baslandi"))
         log_for_plc_bit_change(log_array)
         ####################
         try:
@@ -82,14 +82,14 @@ class VideoCamera(object):
         # LOG
         log_array = {"type": [],"content": []}
         log_array["type"].append("debug")
-        log_array["content"].append(str(f"Frame, Görüntü Islemeden Döndü."))
+        log_array["content"].append(str(f"Frame, Goruntu Islemeden Dondu."))
         log_for_plc_bit_change(log_array)
         ####################
         image_detected = draw_polly_and_check_isin(image_detected, boxes, scores, classes, isIn , method)
         # LOG
         log_array = {"type": [],"content": []}
         log_array["type"].append("debug")
-        log_array["content"].append(str(f"Frame, Polly cizimi ve Icindemi Kontrolünden Döndü"))
+        log_array["content"].append(str(f"Frame, Polly cizimi ve Icindemi Kontrolunden Dondu"))
         log_for_plc_bit_change(log_array)
         ####################
         _, image = cv2.imencode('.jpg', image_detected)
@@ -106,16 +106,16 @@ class VideoCamera(object):
                 # LOG
                 log_array = {"type": [],"content": []}
                 log_array["type"].append("error")
-                log_array["content"].append(str(f"Kameradan Görüntü cekilemedi"))
+                log_array["content"].append(str(f"Kameradan Goruntu cekilemedi"))
                 log_for_plc_bit_change(log_array)
-                print(f"Kameradan Görüntü cekilemedi")
+                print(f"Kameradan Goruntu cekilemedi")
                 ####################
 
 def gen(camera):
     # LOG
     log_array = {"type": [],"content": []}
     log_array["type"].append("debug")
-    log_array["content"].append(str(f"Orjinal Görüntü Arayüzde Görüntülenmek Icin Isleme Basladi"))
+    log_array["content"].append(str(f"Orjinal Goruntu Arayuzde Goruntulenmek Icin Isleme Basladi"))
     log_for_plc_bit_change(log_array)
     ####################
     while True:
@@ -139,7 +139,7 @@ def gen2(camera):
     # LOG
     log_array = {"type": [],"content": []}
     log_array["type"].append("debug")
-    log_array["content"].append(str(f"Detection Edilen Görüntü Arayüzde Görüntülenmek Icin Isleme Basladi"))
+    log_array["content"].append(str(f"Detection Edilen Goruntu Arayuzde Goruntulenmek Icin Isleme Basladi"))
     log_for_plc_bit_change(log_array)
     ####################
     while True:
@@ -156,7 +156,7 @@ def draw_polly_and_check_isin(image, boxes, scores, classes, isIn, method):
     classes = np.squeeze(classes).astype(np.int32)
     x = image.shape[0]
     y = image.shape[1]
-    # TODO Roi sayisina göre total result döndürülecek sekilde revize edilecek.
+    # TODO Roi sayisina gore total result dondurulecek sekilde revize edilecek.
     draw_isIn = False
     for polly_point in poly_point_list:
         draw_poly_(image, polly_point)
@@ -184,7 +184,7 @@ def draw_polly_and_check_isin(image, boxes, scores, classes, isIn, method):
                     # LOG
                     log_array = {"type": [],"content": []}
                     log_array["type"].append("debug")
-                    log_array["content"].append(str(f"Tespit Edilen Nesneler'in Konumuna Göre Polly Rengi Degistirildi"))
+                    log_array["content"].append(str(f"Tespit Edilen Nesneler'in Konumuna Gore Polly Rengi Degistirildi"))
                     log_for_plc_bit_change(log_array)
                     ####################
 
