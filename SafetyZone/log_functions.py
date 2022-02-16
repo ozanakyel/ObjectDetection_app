@@ -30,16 +30,28 @@ def log_for_processed_image(image_orj, image_detected):
 def log_for_plc_bit_change(log_array):
     path = str(datetime.date.today()) + '.txt'
     direction =  os.path.join(str(serverLogLocation), path)
-    for item in log_array:
+    # for keys in log_array:
+    for item in range(len(log_array["type"])):
+        print(log_array["type"][item])
+        print(log_array["content"][item])
         if not os.path.exists(direction):
             with open( direction , 'w+') as f:
-                f.write(item + "\t")
+                f.write('{:<35}'.format("Type"))
+                f.write('{:<35}'.format("Log"))
+                f.write("Date")
+                f.write('\n')
+                f.write('{:-^105}'.format("-"))
+                f.write("\n")
+                f.write('{:<35}'.format(log_array["type"][item]))
+                f.write('{:<35}'.format(log_array["content"][item]))
                 f.write(str(datetime.datetime.now()).replace(" ", "_").replace(".",":"))
                 f.write('\n')
                 f.close()
         else:
             with open( direction , 'a') as f:
-                f.write(item + "\t")
+                f.write('{:<35}'.format(log_array["type"][item]))
+                f.write('{:<35}'.format(log_array["content"][item]))
                 f.write(str(datetime.datetime.now()).replace(" ", "_").replace(".",":"))
                 f.write('\n')
+                f.close()
                 f.close()

@@ -17,20 +17,42 @@ print(reading)"""
 import time
 import threading
 import snap7.util
+from .log_functions import log_for_plc_bit_change
 class Plc(object):
     def __init__(self, PlcIP, PlcRack, PlcSlot):
         self.bit_value = True
         self.client = snap7.client.Client()
         self.client.connect(PlcIP, PlcRack, PlcSlot)
-        self.client.get_connected()
+        if self.client.get_connected():
+            # LOG
+            log_array = {"type": [],"content": []}
+            log_array["type"].append("info")
+            log_array["content"].append(str(f"IP: {PlcIP} . Rack{PlcRack} . Slot{PlcSlot} PLC sine başarıyla bağlandı."))
+            log_for_plc_bit_change(log_array)
+            print(f"IP: {PlcIP} . Rack{PlcRack} . Slot{PlcSlot} PLC sine başarıyla bağlandı.")
+            ####################
+        else:
+            # LOG
+            log_array = {"type": [],"content": []}
+            log_array["type"].append("error")
+            log_array["content"].append(str(f"IP: {PlcIP} . Rack{PlcRack} . Slot{PlcSlot} PLC sine bağlanırken hata oluştu."))
+            log_for_plc_bit_change(log_array)
+            print(f"IP: {PlcIP} . Rack{PlcRack} . Slot{PlcSlot} PLC sine bağlanırken hata oluştu.")
+            ####################
 
     def Read_Byte(self, DB, DBX):
-        buffer = self.client.db_read(DB, DBX, 1)
-        # buffer -> type= byte array -> ascii -> string
-        buffer_value = ord(buffer[0:256].decode('UTF-8'))  # only client.db_read(X, X, count) count =1
-
-        return buffer_value , buffer     # string list
-
+        try:
+            buffer = self.client.db_read(DB, DBX, 1)
+            # buffer -> type= byte array -> ascii -> string
+            buffer_value = ord(buffer[0:256].decode('UTF-8'))  # only client.db_read(X, X, count) count =1
+            return buffer_value , buffer     # string list
+        except:
+            # LOG
+            log_array = {"type": [],"content": []}
+            log_array["type"].append("error")
+            log_array["content"].append(str(f"DB{DB}.DBX{DBX} adresinden byte okunurken hata verdi."))
+            print(f"DB{DB}.DBX{DBX} adresinden byte okunurken hata verdi.")
+            ####################
         # def write_byte(db_num, start_byte, byte_value):  # Byte yazma
         #     data = bytearray(1)
         #     snap7.util.set_byte(data, 0, byte_value)
@@ -41,20 +63,38 @@ class Plc(object):
             data = bytearray(1)
             snap7.util.set_byte(data, 0, value)
             self.client.db_write(DB, DBX, data)
+            # LOG
+            log_array = {"type": [],"content": []}
+            log_array["type"].append("info")
+            log_array["content"].append(str(f"DB{DB} . DBX{DBX} adresine {value} yazılmıştır."))
             print(f"DB{DB} . DBX{DBX} adresine {value} yazılmıştır.")
+            ####################
             result = True
         except:
-            print('PLC Byte yazma işlemi gerçekleştirilemedi')
+            # LOG
+            log_array = {"type": [],"content": []}
+            log_array["type"].append("error")
+            log_array["content"].append(str(f"DB{DB} . DBX{DBX} adresine yazma işlemi başarısız oldu."))
+            print(f"DB{DB} . DBX{DBX} adresine yazma işlemi başarısız oldu.")
+            ####################
             result = False
         return result
 
 
     def Read_Bit(self, DB, DBX, DB_X,pause):
         while True:
-            buffer = self.client.db_read(DB, DBX, 1)
-            byte_value = snap7.util.get_bool(buffer, 0, DB_X)
-            self.bit_value = byte_value   # bool
-            time.sleep(pause)
+            try:
+                buffer = self.client.db_read(DB, DBX, 1)
+                byte_value = snap7.util.get_bool(buffer, 0, DB_X)
+                self.bit_value = byte_value   # bool
+                time.sleep(pause)
+            except:
+                # LOG
+                log_array = {"type": [],"content": []}
+                log_array["type"].append("error")
+                log_array["content"].append(str(f"DB{DB}.DBX{DBX}.{DB_X} adresinden bit okunurken hata verdi."))
+                print(f"DB{DB}.DBX{DBX}.{DB_X} adresinden bit okunurken hata verdi.")
+                ####################
 
 
     def Set_bit(self, DB, DBX, DB_X, value):
@@ -62,13 +102,21 @@ class Plc(object):
             _,data = self.Read_Byte(DB,DBX)
             snap7.util.set_bool(data, 0, DB_X, value)
             self.client.db_write(DB, DBX, data)
+            # LOG
+            log_array = {"type": [],"content": []}
+            log_array["type"].append("info")
+            log_array["content"].append(str(f"DB{DB}.DBX{DBX}.{DB_X} {value} olarak adresi setlenmiştir."))
             print(f"DB{DB}.DBX{DBX}.{DB_X} {value} olarak adresi setlenmiştir.")
-
+            ####################
             result = True
-        except e:
+        except:
+            # LOG
+            log_array = {"type": [],"content": []}
+            log_array["type"].append("error")
+            log_array["content"].append(str(f"DB{DB}.DBX{DBX}.{DB_X} adresine setleme yapılamadı."))
+            print(f"DB{DB}.DBX{DBX}.{DB_X} adresine setleme yapılamadı.")
+            ####################
             result = False
-            print("PLC'ye setleme işlemi yapılamadı")
-            print(e)
         return result
 
 
