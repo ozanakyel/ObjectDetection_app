@@ -7,6 +7,9 @@ class Log():
         self.log_array["content"].append(log_array_content)
         self.log_array["time"].append(time)
     
+    def get_(self):
+        return self.log_array
+    
 # # LOG
 # log_for_frontend = Log()
 # for item in range(10):

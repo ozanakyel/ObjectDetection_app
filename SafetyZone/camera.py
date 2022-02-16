@@ -73,7 +73,7 @@ class VideoCamera(object):
         if method == "DETECTION":
             # LOG
             log_array = {"type": [],"content": []}
-            log_array["type"].append("debug")
+            log_array["type"].append("info")
             log_array["content"].append(str(f"Kameradaki Frame Alindi."))
             log_for_plc_bit_change(log_array)
             ####################
