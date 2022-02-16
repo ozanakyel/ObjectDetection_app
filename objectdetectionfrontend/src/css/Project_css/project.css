@@ -13,6 +13,9 @@
     height: fit-content;
     margin: auto;
 }
+.project .project-area .project-view .body div img{
+    width: 100%;
+}
 .project .top .shower {
     padding: 0;
     padding-bottom: 4px;

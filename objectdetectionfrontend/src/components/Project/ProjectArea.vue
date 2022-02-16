@@ -29,6 +29,7 @@
         <div><img class="images" src="http://127.0.0.1:8000/video_feed" width="100%" height="630"></div>
         <div><img class="images" src="http://127.0.0.1:8000/object_detection" width="100%" height="630"></div>
       </div>
+      {{data}}
       <div class="footer">
         <div>
           <div class="info">
@@ -38,12 +39,12 @@
                 <th>Message</th>
                 <th>Date</th>
               </tr>
-              <tr>
+              <tr v-for="(item,index) in data" :key="index">
                 <td><span style="color: green;">&#10003;</span> Başarılı</td>
                 <td>PLC'e operasyon tamamlandı biti setlendi DbAdres: DB5.DBX0.1</td>
                 <td>01.02.2022 13:28:13</td>
               </tr>
-              <tr>
+              <!-- <tr>
                 <td><svg xmlns="http://www.w3.org/2000/svg" width="9" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg> TipNo</td>
                 <td>PLC'den tip numarası okundu. DbAdres : DB5.DBX0.0 Tip No: 3</td>
                 <td>01.02.2022 13:28:11</td>
@@ -52,7 +53,7 @@
                 <td><svg xmlns="http://www.w3.org/2000/svg" width="9" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg> Ürün</td>
                 <td>Operasyon başlatıldı bilgisi okundu. DbAdres : DB5.DBX0.0</td>
                 <td>01.02.2022 13:28:09</td>
-              </tr>
+              </tr> -->
             </table>
           </div>
         </div>
