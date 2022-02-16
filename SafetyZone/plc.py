@@ -51,6 +51,7 @@ class Plc(object):
             log_array = {"type": [],"content": []}
             log_array["type"].append("error")
             log_array["content"].append(str(f"DB{DB}.DBX{DBX} adresinden byte okunurken hata verdi."))
+            log_for_plc_bit_change(log_array)
             print(f"DB{DB}.DBX{DBX} adresinden byte okunurken hata verdi.")
             ####################
         # def write_byte(db_num, start_byte, byte_value):  # Byte yazma
@@ -67,6 +68,7 @@ class Plc(object):
             log_array = {"type": [],"content": []}
             log_array["type"].append("info")
             log_array["content"].append(str(f"DB{DB} . DBX{DBX} adresine {value} yazılmıştır."))
+            log_for_plc_bit_change(log_array)
             print(f"DB{DB} . DBX{DBX} adresine {value} yazılmıştır.")
             ####################
             result = True
@@ -75,6 +77,7 @@ class Plc(object):
             log_array = {"type": [],"content": []}
             log_array["type"].append("error")
             log_array["content"].append(str(f"DB{DB} . DBX{DBX} adresine yazma işlemi başarısız oldu."))
+            log_for_plc_bit_change(log_array)
             print(f"DB{DB} . DBX{DBX} adresine yazma işlemi başarısız oldu.")
             ####################
             result = False
@@ -93,6 +96,7 @@ class Plc(object):
                 log_array = {"type": [],"content": []}
                 log_array["type"].append("error")
                 log_array["content"].append(str(f"DB{DB}.DBX{DBX}.{DB_X} adresinden bit okunurken hata verdi."))
+                log_for_plc_bit_change(log_array)
                 print(f"DB{DB}.DBX{DBX}.{DB_X} adresinden bit okunurken hata verdi.")
                 ####################
 
@@ -106,6 +110,7 @@ class Plc(object):
             log_array = {"type": [],"content": []}
             log_array["type"].append("info")
             log_array["content"].append(str(f"DB{DB}.DBX{DBX}.{DB_X} {value} olarak adresi setlenmiştir."))
+            log_for_plc_bit_change(log_array)
             print(f"DB{DB}.DBX{DBX}.{DB_X} {value} olarak adresi setlenmiştir.")
             ####################
             result = True
@@ -114,6 +119,7 @@ class Plc(object):
             log_array = {"type": [],"content": []}
             log_array["type"].append("error")
             log_array["content"].append(str(f"DB{DB}.DBX{DBX}.{DB_X} adresine setleme yapılamadı."))
+            log_for_plc_bit_change(log_array)
             print(f"DB{DB}.DBX{DBX}.{DB_X} adresine setleme yapılamadı.")
             ####################
             result = False

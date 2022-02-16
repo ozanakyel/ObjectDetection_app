@@ -38,7 +38,16 @@ class_id, poly_point_list, is_object_have, reverse = rois.get_rois(rois_path)
 class VideoCamera(object):
     def __init__(self):
         # self.video = cv2.VideoCapture('rtsp://admin:Abc1234*@10.16.222.253/')
-        self.video = cv2.VideoCapture(0)
+        try:
+            self.video = cv2.VideoCapture(0)
+        except:
+            # LOG
+            log_array = {"type": [],"content": []}
+            log_array["type"].append("error")
+            log_array["content"].append(str(f"Kamera Bağlantısı Sağlanamadı"))
+            log_for_plc_bit_change(log_array)
+            print(f"Kamera Bağlantısı Sağlanamadı")
+            ####################
         (self.grabbed, self.frame) = self.video.read()
         threading.Thread(target=self.update, args=(), daemon=True).start()
         self.detect = object_detector.ObjectDetection()
@@ -61,7 +70,16 @@ class VideoCamera(object):
 
     def update(self):
         while True:
-            (self.grabbed, self.frame) = self.video.read()
+            try:
+                (self.grabbed, self.frame) = self.video.read()
+            except:
+                # LOG
+                log_array = {"type": [],"content": []}
+                log_array["type"].append("error")
+                log_array["content"].append(str(f"Kameradan Görüntü Çekilemedi"))
+                log_for_plc_bit_change(log_array)
+                print(f"Kameradan Görüntü Çekilemedi")
+                ####################
 
 def gen(camera):
     while True:
