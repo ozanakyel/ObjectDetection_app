@@ -29,7 +29,6 @@
         <div><img class="images" src="http://127.0.0.1:8000/video_feed" width="100%" height="630"></div>
         <div><img class="images" src="http://127.0.0.1:8000/object_detection" width="100%" height="630"></div>
       </div>
-      <p class="data">{{data}}</p>
       <div class="footer">
         <div>
           <div class="info">
@@ -108,12 +107,12 @@ import Loader from '@/components/Loader.vue'
 export default {
   name: 'ProjectArea',
   props: {
-    msg: String
+    msg: String,
+    data: Array
   },
   data () {
     return {
-      connection: null,
-      data: []
+      connection: null
     }
   },
   components: {
@@ -138,17 +137,6 @@ export default {
       console.log(images[0].offsetWidth)
       // console.log(images[0].attributes[1].isConnected)
     }
-    // sendMessage: function (message) {
-    //   this.connection = new WebSocket('ws://localhost:8000/ws/pollData')
-
-    //   this.connection.onopen = function (event) {
-    //     console.log(event)
-    //     console.log('Successfully connected to the echo websocket server...')
-    //   }
-    //   this.connection.onmessage = function (event) {
-    //     console.log(event.data)
-    //   }
-    // }
   },
   mounted () {
     // console.log(document.querySelector('.project-area').offsetHeight)

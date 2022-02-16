@@ -1,7 +1,7 @@
 <template>
   <div class="project">
       <Navbar/>
-      <ProjectArea/>
+      <ProjectArea :data="data"/>
   </div>
 </template>
 
@@ -19,11 +19,30 @@ export default {
   },
   data () {
     return {
-      msg: ''
+      msg: '',
+      data: []
     }
   },
   mounted () {
     document.querySelector('.navbar').style.display = 'none'
+    fetch('http://127.0.0.1:8000/get_projects', {
+      method: 'GET'
+    })
+      .then(response => response.json())
+      .then(data => {
+        this.data = data
+        document.querySelector('.data').innerHTML = this.data
+      })
+    // setInterval(function () {
+    //   fetch('http://127.0.0.1:8000/get_projects', {
+    //     method: 'GET'
+    //   })
+    //     .then(response => response.json())
+    //     .then(data => {
+    //       this.data = data
+    //       document.querySelector('.data').innerHTML = this.data
+    //     })
+    // }, 15000)
   }
 }
 </script>
