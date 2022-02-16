@@ -3,13 +3,15 @@ from cv2 import cv2
 import numpy as np
 import tensorflow as tf
 import sys
-import time
-
-from PIL import Image
-from PIL import ImageFont
-from PIL import ImageDraw 
 from numpy import asarray, isin
+from .log_functions import log_for_plc_bit_change
 
+# LOG
+log_array = {"type": [],"content": []}
+log_array["type"].append("debug")
+log_array["content"].append(str("Object Detection Kutuphaneleri Yuklendi"))
+log_for_plc_bit_change(log_array)
+####################
 # This is needed since the notebook is stored in the object_detection folder.
 sys.path.append("..")
 
@@ -31,6 +33,12 @@ class ObjectDetection(object):
 
         # Name of the directory containing the object detection module we're using
         self.MODEL_NAME = 'faster_rcnn_inception_v2_coco_2018_01_28'
+        # LOG
+        log_array = {"type": [],"content": []}
+        log_array["type"].append("debug")
+        log_array["content"].append(str(f"{self.MODEL_NAME} Yuklendi."))
+        log_for_plc_bit_change(log_array)
+        ####################
         # select image folder
         # Grab path to current working directory
         self.CWD_PATH = os.getcwd()
@@ -40,9 +48,21 @@ class ObjectDetection(object):
         # Path to frozen detection graph .pb file, which contains the model that is used
         # for object detection.
         self.PATH_TO_CKPT = os.path.join(self.CWD_PATH, 'SafetyZone\object_detection', self.MODEL_NAME, 'frozen_inference_graph.pb')
+        # LOG
+        log_array = {"type": [],"content": []}
+        log_array["type"].append("debug")
+        log_array["content"].append(str(f"{self.PATH_TO_CKPT} Yuklendi."))
+        log_for_plc_bit_change(log_array)
+        ####################
 
         # Path to label map file
         self.PATH_TO_LABELS = os.path.join(self.CWD_PATH,'SafetyZone\object_detection\data','mscoco_label_map.pbtxt')
+        # LOG
+        log_array = {"type": [],"content": []}
+        log_array["type"].append("debug")
+        log_array["content"].append(str(f"{self.PATH_TO_LABELS} Yuklendi."))
+        log_for_plc_bit_change(log_array)
+        ####################
 
         # Path to image
         # PATH_TO_IMAGE = os.path.join(r'C:\Users\ozan.akyel\Desktop\project 2021\siperlik toka\v4\valid',IMAGE_NAME) ################################# geri alman gerekebilir
@@ -91,7 +111,12 @@ class ObjectDetection(object):
             feed_dict={self.image_tensor: image_expanded})
 
         # Draw the results of the detection (aka 'visulaize the results')
-
+        # LOG
+        log_array = {"type": [],"content": []}
+        log_array["type"].append("debug")
+        log_array["content"].append(str("Object Detection Başlatıldı Yuklendi."))
+        log_for_plc_bit_change(log_array)
+        ####################
         vis_util.visualize_boxes_and_labels_on_image_array(
             image,
             np.squeeze(boxes),

@@ -18,6 +18,12 @@ import time
 import threading
 import snap7.util
 from .log_functions import log_for_plc_bit_change
+# LOG
+log_array = {"type": [],"content": []}
+log_array["type"].append("debug")
+log_array["content"].append(str("plc.py Kütüphaneleri Yüklendi"))
+log_for_plc_bit_change(log_array)
+####################
 class Plc(object):
     def __init__(self, PlcIP, PlcRack, PlcSlot):
         self.bit_value = True
@@ -27,17 +33,17 @@ class Plc(object):
             # LOG
             log_array = {"type": [],"content": []}
             log_array["type"].append("info")
-            log_array["content"].append(str(f"IP: {PlcIP} . Rack{PlcRack} . Slot{PlcSlot} PLC sine başarıyla bağlandı."))
+            log_array["content"].append(str(f"IP: {PlcIP} . Rack{PlcRack} . Slot{PlcSlot} PLC sine basariyla baglandi."))
             log_for_plc_bit_change(log_array)
-            print(f"IP: {PlcIP} . Rack{PlcRack} . Slot{PlcSlot} PLC sine başarıyla bağlandı.")
+            print(f"IP: {PlcIP} . Rack{PlcRack} . Slot{PlcSlot} PLC sine basariyla baglandi.")
             ####################
         else:
             # LOG
             log_array = {"type": [],"content": []}
             log_array["type"].append("error")
-            log_array["content"].append(str(f"IP: {PlcIP} . Rack{PlcRack} . Slot{PlcSlot} PLC sine bağlanırken hata oluştu."))
+            log_array["content"].append(str(f"IP: {PlcIP} . Rack{PlcRack} . Slot{PlcSlot} PLC sine baglanirken hata olustu."))
             log_for_plc_bit_change(log_array)
-            print(f"IP: {PlcIP} . Rack{PlcRack} . Slot{PlcSlot} PLC sine bağlanırken hata oluştu.")
+            print(f"IP: {PlcIP} . Rack{PlcRack} . Slot{PlcSlot} PLC sine baglanirken hata olustu.")
             ####################
 
     def Read_Byte(self, DB, DBX):
@@ -67,18 +73,18 @@ class Plc(object):
             # LOG
             log_array = {"type": [],"content": []}
             log_array["type"].append("info")
-            log_array["content"].append(str(f"DB{DB} . DBX{DBX} adresine {value} yazılmıştır."))
+            log_array["content"].append(str(f"DB{DB} . DBX{DBX} adresine {value} yazilmistir."))
             log_for_plc_bit_change(log_array)
-            print(f"DB{DB} . DBX{DBX} adresine {value} yazılmıştır.")
+            print(f"DB{DB} . DBX{DBX} adresine {value} yazilmistir.")
             ####################
             result = True
         except:
             # LOG
             log_array = {"type": [],"content": []}
             log_array["type"].append("error")
-            log_array["content"].append(str(f"DB{DB} . DBX{DBX} adresine yazma işlemi başarısız oldu."))
+            log_array["content"].append(str(f"DB{DB} . DBX{DBX} adresine yazma islemi basarisiz oldu."))
             log_for_plc_bit_change(log_array)
-            print(f"DB{DB} . DBX{DBX} adresine yazma işlemi başarısız oldu.")
+            print(f"DB{DB} . DBX{DBX} adresine yazma islemi basarisiz oldu.")
             ####################
             result = False
         return result
@@ -109,18 +115,18 @@ class Plc(object):
             # LOG
             log_array = {"type": [],"content": []}
             log_array["type"].append("info")
-            log_array["content"].append(str(f"DB{DB}.DBX{DBX}.{DB_X} {value} olarak adresi setlenmiştir."))
+            log_array["content"].append(str(f"DB{DB}.DBX{DBX}.{DB_X} {value} olarak adresi setlenmistir."))
             log_for_plc_bit_change(log_array)
-            print(f"DB{DB}.DBX{DBX}.{DB_X} {value} olarak adresi setlenmiştir.")
+            print(f"DB{DB}.DBX{DBX}.{DB_X} {value} olarak adresi setlenmistir.")
             ####################
             result = True
         except:
             # LOG
             log_array = {"type": [],"content": []}
             log_array["type"].append("error")
-            log_array["content"].append(str(f"DB{DB}.DBX{DBX}.{DB_X} adresine setleme yapılamadı."))
+            log_array["content"].append(str(f"DB{DB}.DBX{DBX}.{DB_X} adresine setleme yapilamadi."))
             log_for_plc_bit_change(log_array)
-            print(f"DB{DB}.DBX{DBX}.{DB_X} adresine setleme yapılamadı.")
+            print(f"DB{DB}.DBX{DBX}.{DB_X} adresine setleme yapilamadi.")
             ####################
             result = False
         return result

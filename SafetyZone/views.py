@@ -1,19 +1,22 @@
 from asyncio import tasks
 import re
 from django.shortcuts import render
-from datetime import date, datetime,timedelta
 from django.http.response import StreamingHttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
 import json
 from SafetyZone.camera import VideoCamera,gen, gen2
-import requests
-import cv2
 
 from SafetyZone.models import Project, Config, ProjectConfig
 from SafetyZone.serializers import ProjectSerializer,ConfigSerializer,ProjectConfigSerializer
-from celery import shared_task
+from .log_functions import log_for_plc_bit_change
+# LOG
+log_array = {"type": [],"content": []}
+log_array["type"].append("debug")
+log_array["content"].append(str("views.py Kütüphaneleri Yüklendi"))
+log_for_plc_bit_change(log_array)
+####################
 
 # videocamera = cv2.VideoCapture(0)
 cam = VideoCamera() 
