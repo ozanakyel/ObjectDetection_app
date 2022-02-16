@@ -14,7 +14,7 @@ from .log_functions import log_for_plc_bit_change
 # LOG
 log_array = {"type": [],"content": []}
 log_array["type"].append("debug")
-log_array["content"].append(str("views.py Kütüphaneleri Yüklendi"))
+log_array["content"].append(str("views.py Kutuphaneleri Yuklendi"))
 log_for_plc_bit_change(log_array)
 ####################
 
