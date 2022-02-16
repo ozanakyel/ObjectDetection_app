@@ -2,7 +2,12 @@ import datetime
 import os
 import cv2
 from .log_for_frontend import Log
-
+import json
+import requests
+# import websocket
+# ws = websocket.WebSocket()
+# ws.connect('ws://localhost:8000/ws/pollData')
+# ws.send(json.dumps({'value': 5}))
 imageSaveLocation = r"C:\Users\Harun\Desktop\imagesave"
 serverLogLocation = r"C:\Users\Harun\Desktop\serverlog"
 log_frontend = Log()

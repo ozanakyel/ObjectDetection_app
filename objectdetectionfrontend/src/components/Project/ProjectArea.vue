@@ -10,7 +10,7 @@
           </div>
         </div>
         <div>
-          <div class="butons">
+          <div @click="sendMessage('Hello World')" class="butons">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg><span style="margin-left: 5px;">Connect</span>
           </div>
           <div class="butons">
@@ -25,10 +25,10 @@
           </div>
         </div>
       </div>
-      <div class="body">
+      <!-- <div class="body">
         <div><img class="images" src="http://127.0.0.1:8000/video_feed" width="100%" height="630"></div>
         <div><img class="images" src="http://127.0.0.1:8000/object_detection" width="100%" height="630"></div>
-      </div>
+      </div> -->
       <div class="footer">
         <div>
           <div class="info">
@@ -109,6 +109,11 @@ export default {
   props: {
     msg: String
   },
+  data () {
+    return {
+      connection: null
+    }
+  },
   components: {
     Loader
   },
@@ -130,6 +135,21 @@ export default {
       var images = document.querySelectorAll('.images')
       console.log(images[0].offsetWidth)
       // console.log(images[0].attributes[1].isConnected)
+    },
+    sendMessage: function (message) {
+      this.connection.send(JSON.stringify(message))
+    }
+  },
+  created () {
+    console.log('Starting connection to WebSocket Server')
+    this.connection = new WebSocket('ws://localhost:8000/ws/pollData')
+
+    this.connection.onopen = function (event) {
+      console.log(event)
+      console.log('Successfully connected to the echo websocket server...')
+    }
+    this.connection.onmessage = function (event) {
+      console.log(event.data)
     }
   },
   mounted () {
@@ -146,7 +166,5 @@ export default {
     // document.querySelector('.exit').addEventListener('click', this.goToHome())
     // console.log(document.querySelector('img.images').style.innerHeight)
   }
-  // updated () {
-  // }
 }
 </script>
