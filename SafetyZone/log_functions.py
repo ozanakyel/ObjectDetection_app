@@ -50,7 +50,8 @@ def log_for_plc_bit_change(log_array):
                 f.write(time)
                 f.write('\n')
                 f.close()
-            log_frontend.log_for_frontend(log_array["type"][item], log_array["content"][item], time)
+            if log_array["type"][item] != "debug":
+                log_frontend.log_for_frontend(log_array["type"][item], log_array["content"][item], time)
         else:
             with open( direction , 'a') as f:
                 f.write('{:<10}'.format(log_array["type"][item]))
@@ -60,4 +61,5 @@ def log_for_plc_bit_change(log_array):
                 f.write('\n')
                 f.close()
                 f.close()
-            log_frontend.log_for_frontend(log_array["type"][item], log_array["content"][item], time)
+            if log_array["type"][item] != "debug":
+                log_frontend.log_for_frontend(log_array["type"][item], log_array["content"][item], time)
