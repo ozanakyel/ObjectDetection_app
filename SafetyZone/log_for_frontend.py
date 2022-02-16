@@ -3,9 +3,17 @@ class Log():
         self.log_array = {'type': [], 'content': [], 'time': []}
     
     def log_for_frontend(self, log_array_type, log_array_content, time):
-        self.log_array["type"].append(log_array_type)
-        self.log_array["content"].append(log_array_content)
-        self.log_array["time"].append(time)
+        if len(self.log_array['type']) == 100:
+            self.log_array["type"].pop()
+            self.log_array["content"].pop()
+            self.log_array["time"].pop()
+            self.log_array["type"].append(log_array_type)
+            self.log_array["content"].append(log_array_content)
+            self.log_array["time"].append(time)
+        else:
+            self.log_array["type"].append(log_array_type)
+            self.log_array["content"].append(log_array_content)
+            self.log_array["time"].append(time)
     
     def get_(self):
         return self.log_array

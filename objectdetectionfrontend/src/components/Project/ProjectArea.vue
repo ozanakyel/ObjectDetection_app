@@ -154,13 +154,22 @@ export default {
     if (Number(document.querySelector('.project-area').offsetHeight) < Number(window.innerHeight)) {
       document.querySelector('.project-area').style.height = (window.innerHeight) + 'px'
     }
-    // fetch('http://127.0.0.1:8000/get_projects', {
-    //   method: 'GET'
-    // })
-    //   .then(response => response.json())
-    //   .then(data => {
-    //     console.log(data)
-    //   })
+    fetch('http://127.0.0.1:8000/get_projects', {
+      method: 'GET'
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data)
+      })
+    setInterval(function () {
+      fetch('http://127.0.0.1:8000/get_projects', {
+        method: 'GET'
+      })
+        .then(response => response.json())
+        .then(data => {
+          console.log(data)
+        })
+    }, 1000)
     // var images = document.querySelectorAll('.images')
     // console.log(images[0].offsetWidth)
     // if (images[0].attributes[1].isConnected === true) {
