@@ -83,9 +83,10 @@ class VideoCamera(object):
             (self.grabbed, self.frame) = self.video.read()
 
     def gen(self):
-            
-        yield (b'--frame\r\n'
-            b'Content-Type: image/jpeg\r\n\r\n' + self.jpeg + b'\r\n\r\n')
+        print("******GEN**********")
+        while True:     
+            yield (b'--frame\r\n'
+                b'Content-Type: image/jpeg\r\n\r\n' + self.jpeg + b'\r\n\r\n')
 
     def gen2(self):
         while True:
