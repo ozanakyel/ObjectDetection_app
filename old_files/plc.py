@@ -17,13 +17,6 @@ print(reading)"""
 import time
 import threading
 import snap7.util
-from .log_functions import log_for_plc_bit_change
-# LOG
-log_array = {"type": [],"content": []}
-log_array["type"].append("debug")
-log_array["content"].append(str("plc.py Kutuphaneleri Yuklendi"))
-log_for_plc_bit_change(log_array)
-####################
 class Plc(object):
     def __init__(self, PlcIP, PlcRack, PlcSlot):
         self.bit_value = True
