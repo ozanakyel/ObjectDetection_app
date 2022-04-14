@@ -9,12 +9,21 @@ import threading
 from cv2 import cv2
 from shapely.geometry import Point
 from shapely.geometry.polygon import Polygon
-from .server_utils import WebSocket, get_rois, show_ok_nok, draw_poly_
+# from SafetyZone.server_utils import WebSocket, get_rois, show_ok_nok, draw_poly_
+
+
+WEBSOCKET_URL = "ws://127.0.0.1:8081/ws/socket-server/"
+class WebSocket(object):
+    def __init__(self):
+        self.ws = websocket.create_connection(WEBSOCKET_URL)
+    
+    def send(self, message):
+        self.ws.send(message)
 
 WEB_SOCKET = WebSocket()
 ROIS_PATH = r'C:\Users\Harun\Desktop\ObjectDetection_app\ObjectDetection_app-main\SafetyZone\rois.json'
-ROIS_CLASS_ID, ROIS_POLY_POINT_LIST, IS_OBJECT_HAVE, REVERSE = get_rois(ROIS_PATH)
-WEBSOCKET_URL = "ws://127.0.0.1:8081/ws/socket-server/"
+
+
 
 def get_rois(file_path):
 
@@ -47,8 +56,11 @@ def get_rois(file_path):
             PolyPointList.append(point)
 
     return ClassId, PolyPointList, IsObjectHave, Reverse
-def draw_polly_and_check_isin(image, boxes, scores, classes, isIn, method):
-    result = None
+
+ROIS_CLASS_ID, ROIS_POLY_POINT_LIST, IS_OBJECT_HAVE, REVERSE = get_rois(ROIS_PATH)
+
+def draw_polly_and_check_isin(image, boxes, scores, classes, isIn):
+
     # RoiAlign = ProjectConfig.objects.filter(configKeyID_id = 53).values()
     boxes = np.squeeze(boxes)
     scores = np.squeeze(scores)
@@ -146,12 +158,7 @@ def check_rois(image, polygon, box, position):
     #     result = False
     return result
 
-class WebSocket(object):
-    def __init__(self):
-        self.ws = websocket.create_connection(WEBSOCKET_URL)
-    
-    def send(self, message):
-        self.ws.send(message)
+
 
 """import snap7
 
