@@ -1,7 +1,0 @@
-[
-{"ClassId":'1', "PolyPointList":[{"X":1,"Y":10},{"X":450,"Y":10},{"X":435,"Y":245},{"X":1,"Y":590}],"IsObjectHave":false,"Reverse":true}
-{"ClassId":'2', "PolyPointList":[{"X":21,"Y":10},{"X":470,"Y":10},{"X":455,"Y":245},{"X":21,"Y":590}],"IsObjectHave":false,"Reverse":true}
-{"ClassId":'3', "PolyPointList":[{"X":41,"Y":10},{"X":490,"Y":10},{"X":475,"Y":245},{"X":41,"Y":590}],"IsObjectHave":false,"Reverse":true}
-{"ClassId":'1', "PolyPointList":[{"X":61,"Y":10},{"X":510,"Y":10},{"X":495,"Y":245},{"X":61,"Y":590}],"IsObjectHave":false,"Reverse":true}
-{"ClassId":'5', "PolyPointList":[{"X":81,"Y":10},{"X":530,"Y":10},{"X":515,"Y":245},{"X":81,"Y":590}],"IsObjectHave":false,"Reverse":true}
-]
