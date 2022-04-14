@@ -61,6 +61,7 @@ ROIS_CLASS_ID, ROIS_POLY_POINT_LIST, IS_OBJECT_HAVE, REVERSE = get_rois(ROIS_PAT
 
 def draw_polly_and_check_isin(image, boxes, scores, classes):
 
+
     # RoiAlign = ProjectConfig.objects.filter(configKeyID_id = 53).values()
     boxes = np.squeeze(boxes)
     scores = np.squeeze(scores)
