@@ -19,7 +19,8 @@ from tensorflow import ConfigProto
 from tensorflow import InteractiveSession
 
 # MODEL_NAME = 'mask_rcnn_inception_v2_coco_2018_01_28'
-MODEL_NAME = 'faster_rcnn_inception_v2_coco_2018_01_28'
+# MODEL_NAME = 'faster_rcnn_inception_v2_coco_2018_01_28'
+MODEL_NAME = 'ssd_inception_v2_coco_2018_01_28' 
 LABEL_MAP = 'mscoco_label_map.pbtxt'
 NUM_CLASSES = 5
 
