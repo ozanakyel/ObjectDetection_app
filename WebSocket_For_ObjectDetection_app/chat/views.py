@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from django.http.response import StreamingHttpResponse
-from .camera import VideoCamera,gen
+# from .camera import VideoCamera,gen
 # from .websocket_connection import WebSocket
 # from channels.layers import get_channel_layer
 # from asgiref.sync import async_to_sync
