@@ -48,39 +48,13 @@ class VideoCamera(object):
         self.fc = 0
         self.FPS = 0
         print("başladı")
-        threading.Thread(target=self.update, args=(), daemon=True).start()
+        # threading.Thread(target=self.update, args=(), daemon=True).start()
         threading.Thread(target=self.get_frame, args=(), daemon=True).start()
 
     def __del__(self):
         self.video.release()
 
     def get_frame(self):
-        while True:
-            image = self.frame
-            self.fc+=1
-            TIME = time.time() - self.start_time
-            
-            if (TIME) >= self.display_time :
-                self.FPS = self.fc / (TIME)
-                self.fc = 0
-                self.start_time = time.time()
-
-            fps_disp = "FPS: "+str(self.FPS)[:5]
-            
-            # Add FPS count on frame
-            # WEB_SOCKET.send(fps_disp)
-            image = cv2.putText(image, fps_disp, (10, 25),
-                cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 0), 2)
-            _, jpeg = cv2.imencode('.jpg', image)
-            image_detected, isIn, boxes, scores, classes = self.detect.object_detection(image)
-            image_detected = draw_polly_and_check_isin(image_detected, boxes, scores, classes, isIn)
-
-            _, image = cv2.imencode('.jpg', image_detected)
-            self.jpeg = jpeg.tobytes()
-            self.image = image.tobytes()
-
-    def update(self):
-        print("******UPDATE**********")
         while True:
             (self.grabbed, self.frame) = self.video.read()
             image = self.frame
@@ -110,12 +84,6 @@ class VideoCamera(object):
     #     print("******UPDATE**********")
     #     while True:
     #         (self.grabbed, self.frame) = self.video.read()
-
-    def gen(self):
-        print("******GEN**********")
-        while True:     
-            yield (b'--frame\r\n'
-                b'Content-Type: image/jpeg\r\n\r\n' + self.jpeg + b'\r\n\r\n')
 
     def gen(self):
         print("******GEN**********")
