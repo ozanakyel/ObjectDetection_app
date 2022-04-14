@@ -9,9 +9,6 @@ from SafetyZone.models import Project, Config, ProjectConfig
 from SafetyZone import rois 
 from django.conf import settings
 from SafetyZone import object_detector
-from django.shortcuts import render
-from .models import *
-from .isIn import *
 from .server_utils import draw_polly_and_check_isin
 
 # from .plc import Plc
