@@ -56,31 +56,5 @@
 }
 .navbar .add-project {
     width: fit-content;
-    margin-right: 25px;
-}
-.navbar .add-project {
-    display: flex;
-    justify-content: center;
-    padding: 20px;
-  }
-.navbar .add-project .change {
-    width: fit-content;
-    background-color: white;
-    color: #11823b;
-    border-radius: 5px;
-    text-align: center;
-    width: 60%;
-    border: 1px solid #11823b;
-    cursor: pointer;
-}
-.navbar .add-project .change a p {
-    padding: 12px;  
-}
-.navbar .add-project .change:hover {
-    background-color: #11823b;
-    color: white;
-    border: 1px solid #11823b;
-}
-.navbar .add-project .change a p {
-    transition: all 0s ease;
+    /* margin-right: 25px; */
 }

@@ -56,8 +56,8 @@ body {
 }
 .middle .card .cards:hover {
   box-shadow: rgba(151, 151, 151, 0.329) 0px 0px 15px 7px;
-  transition-duration: 0.2s;
-  transform: scale(1.01);
+  /* transition-duration: 0.2s;
+  transform: scale(1.01); */
 }
 .middle .card .cards .cards-inside .header {
   text-align: center;
@@ -112,6 +112,104 @@ body {
 }
 .middle .card .cards .cards-inside .body div div span {
   margin-left: 5px;
+}
+.middle .add-project {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 20px;
+}
+.middle .add-project .change {
+  width: fit-content;
+  color: #11823b;
+  /* border-radius: 5px; */
+  text-align: center;
+  cursor: pointer;
+}
+.middle .add-project .change p {
+  font-size: 12px;
+  padding: 8px 12px;  
+}
+.middle .add-project .change p {
+  transition: all 0s ease;
+}
+.middle .pop-up-card {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  justify-content: center;
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+.middle .pop-up-card .cards-card {
+  background-color: rgb(215, 229, 250);
+  text-align: center;
+  /* position: relative; */
+  color: black;
+  display: block;
+  width: fit-content;
+  height: fit-content;
+  /* margin: auto; */
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 100px;
+  padding: 15px;
+  /* border: 1px solid #888; */
+  border-radius: 5px;
+}
+.middle .pop-up-card .cards-card .body {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.middle .pop-up-card .cards-card .items {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+  background-color: aliceblue;
+  margin: 5px;
+  border-radius: 5px;
+}
+.middle .pop-up-card .cards-card .items .head {
+  width: 100%;
+  text-align: left;
+  /* padding: 5px 10px 15px 10px; */
+  padding-bottom: 5px;
+  border: 1px solid rgb(70, 150, 117);
+  border-width: 0;
+  border-bottom-width: 1px;
+}
+.middle .pop-up-card .cards-card .items div {
+  width: 100%;
+  margin: 10px 0;
+  padding: 0 15px;
+}
+
+.middle .pop-up-card .cards-card .items .input label{
+  margin-right: 5px;
+  font-size: 15px
+}
+.middle .pop-up-card .cards-card .body .items .send {
+  width: 100%;
+  /* margin: 10px 0;
+  margin: 0 15px 0 15px; */
+}
+.middle .pop-up-card .cards-card .body .items .send p {
+  width: 100%;
+  background-color: rgb(70, 150, 117);
+  color: white;
+  font-size: 14px;
+  padding: 8px !important;
+  border-radius: 5px;
+  cursor: pointer;
 }
 /* .middle .card .cards .cards-inside .body div{
 } */
