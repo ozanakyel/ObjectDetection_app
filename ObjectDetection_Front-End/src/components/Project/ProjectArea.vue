@@ -30,8 +30,8 @@
         <div><img class="images" width="100%" height="630" :src="object_detection"></div>
       </div>
       <div class="ok-nok">
-        <template v-for="(item,index) in ok_nok" :key="index">
-          <div class="butons">
+        <template>
+          <div class="butons" v-for="(item,index) in ok_nok" :key="index">
               <span class="status"></span><span style="margin-left: 3px;margin-right: 6px;" class="text">OK</span>
           </div>
         </template>

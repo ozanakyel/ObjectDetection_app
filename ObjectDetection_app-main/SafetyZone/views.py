@@ -18,8 +18,8 @@ for item in Project.objects.all().values():
     print(item, item['cameraIP'])
     if item['cameraIP'] == '0':
         running_projects.append(VideoCamera())
-    else:
-        running_projects.append(VideoCamera(item['cameraIP']))
+    # else:
+    #     running_projects.append(VideoCamera(item['cameraIP']))
 
 
 
@@ -37,6 +37,17 @@ def video_feed(request, id=0):
 @csrf_exempt
 def video_feed_object_detection(request, id=0):
 	return StreamingHttpResponse(running_projects[id].gen2(), content_type="multipart/x-mixed-replace;boundary=frame")
+
+@csrf_exempt
+def video_feed_single(request, id=0):
+    return StreamingHttpResponse(running_projects[id].gen_single(), content_type="multipart/x-mixed-replace;boundary=frame")
+
+
+@csrf_exempt
+def video_feed_object_detection_single(request, id=0):
+	return StreamingHttpResponse(running_projects[id].gen2_single(), content_type="multipart/x-mixed-replace;boundary=frame")
+
+
 
 @csrf_exempt
 def get_projects(request, id = 0):

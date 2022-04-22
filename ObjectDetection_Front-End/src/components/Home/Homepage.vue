@@ -10,6 +10,7 @@
           <div class="body">
             <div>
               <div><p>Bypass Active<span style="color: green;font-size: 18px">&#10003;</span></p></div>
+              <!-- <div style="width: 100%"><img class="mini-image" src="" width="50%" height="100" style="object-fit: contain"><img class="mini-image" src="" width="50%" height="100" style="object-fit: contain"></div> -->
               <div><p>Process Result</p></div>
               <div><p>Last Process Time:</p><span>19.02.2022 10:32</span></div>
               <div><p>Kamera IP:</p> </div>
@@ -32,7 +33,9 @@ export default {
   name: 'HomePage',
   data () {
     return {
-      projects: []
+      projects: [],
+      video_feed: 'http://127.0.0.1:8000/video_feed/0',
+      object_detection: 'http://127.0.0.1:8000/object_detection/'
     }
   },
   methods: {
@@ -59,6 +62,12 @@ export default {
     if (Number(document.querySelector('.middle').offsetHeight) < Number(window.innerHeight)) {
       document.querySelector('.middle').style.height = (window.innerHeight - document.querySelector('.navbar').offsetHeight) + 'px'
     }
+    // window.onload = function () {
+    //   setInterval(() => {
+    //     document.getElementsByClassName('mini-image')[0].src = 'http://127.0.0.1:8000/video_feed_single/0'
+    //     console.log('Çalıştı')
+    //   }, 1000)
+    // }
   }
 }
 </script>
