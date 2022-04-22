@@ -11,9 +11,9 @@ class Project(models.Model):
 
 class Config(models.Model):
     configKeyID = models.AutoField(primary_key=True)
-    configKey = models.CharField(max_length=200)
+    configName = models.CharField(max_length=200)
 
-class ConfigKeyValues(models.Model):
+class ConfigValue(models.Model):
     projectID = models.ForeignKey(Project, default= None, on_delete=models.CASCADE)
     configKeyID = models.ForeignKey(Config, default= None, on_delete=models.CASCADE)
     configValue = models.CharField(max_length=200, null=True)

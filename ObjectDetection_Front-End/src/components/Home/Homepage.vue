@@ -40,7 +40,7 @@ export default {
       if (event.target.className !== 'change-text') {
         this.$router.push({
           name: 'Project',
-          params: { selectedProject: index }
+          params: { id: index }
         })
       }
     }

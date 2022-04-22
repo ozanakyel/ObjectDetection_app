@@ -132,8 +132,8 @@ export default {
     return {
       connection: null,
       ok_nok: 2,
-      video_feed: 'http://127.0.0.1:8000/video_feed/' + this.$route.params.selectedProject,
-      object_detection: 'http://127.0.0.1:8000/object_detection/' + this.$route.params.selectedProject
+      video_feed: 'http://127.0.0.1:8000/video_feed/' + this.$route.params.id,
+      object_detection: 'http://127.0.0.1:8000/object_detection/' + this.$route.params.id
     }
   },
   components: {

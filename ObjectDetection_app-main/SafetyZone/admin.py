@@ -3,6 +3,6 @@ from .models import *
 
 admin.site.register(Project)
 admin.site.register(Config)
-admin.site.register(ConfigKeyValues)
+admin.site.register(ConfigValue)
 # Register your models here.
 #asdd
