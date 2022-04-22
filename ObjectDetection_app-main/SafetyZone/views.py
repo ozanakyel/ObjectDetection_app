@@ -13,23 +13,30 @@ from SafetyZone.models import *
 from SafetyZone.serializers import ProjectSerializer,ConfigSerializer,ProjectConfigSerializer
 
 
-# videocamera = cv2.VideoCapture(0)
-cam = VideoCamera() 
+running_projects = []
+for item in Project.objects.all().values():
+    print(item, item['cameraIP'])
+    if item['cameraIP'] == '0':
+        running_projects.append(VideoCamera())
+    else:
+        running_projects.append(VideoCamera(item['cameraIP']))
 
 
-# def video_stream_orj():
-#     return StreamingHttpResponse(gen(cam), content_type="multipart/x-mixed-replace;boundary=frame")
-# threading.Thread(target=video_stream_orj, args=(), daemon=True).start()
-
-@csrf_exempt
-def video_feed(request):
-    # print(request.__dict__)
-    return StreamingHttpResponse(cam.gen(), content_type="multipart/x-mixed-replace;boundary=frame")
-# threading.Thread(target=video_feed, args=('asd'), daemon=True).start()
 
 @csrf_exempt
-def video_feed_object_detection(request):
-	return StreamingHttpResponse(cam.gen2(), content_type="multipart/x-mixed-replace;boundary=frame")
+def test(request, id=0):
+    if request.method == "GET":
+        print(id, request)
+        return JsonResponse("Added Successfully", safe = False)
+
+@csrf_exempt
+def video_feed(request, id=0):
+    return StreamingHttpResponse(running_projects[id].gen(), content_type="multipart/x-mixed-replace;boundary=frame")
+
+
+@csrf_exempt
+def video_feed_object_detection(request, id=0):
+	return StreamingHttpResponse(running_projects[id].gen2(), content_type="multipart/x-mixed-replace;boundary=frame")
 
 @csrf_exempt
 def get_projects(request, id = 0):
@@ -37,8 +44,10 @@ def get_projects(request, id = 0):
         projects = Project.objects.all()
         projects_serializer = ProjectSerializer(projects, many = True)
         return JsonResponse(projects_serializer.data, safe=False)
-    # return JsonResponse("asd", safe=False)
-# requests.get('http://127.0.0.1:8000/video_feed')
-# requests.get('http://127.0.0.1:8000/object_detection')
-# threading.Thread(target=video_feed, args=(1), daemon=True).start()
-# threading.Thread(target=video_feed_object_detection, args=(1), daemon=True).start()
+    elif request.method == 'POST':
+        projects_data = JSONParser().parse(request)
+        patient_serializer = ProjectSerializer(data = projects_data)
+        if patient_serializer.is_valid():
+            patient_serializer.save()
+            return JsonResponse("Added Successfully", safe = False)
+        return JsonResponse("Failed to Add", safe = False)

@@ -1,8 +1,9 @@
 from . import views
-from django.urls import re_path
+from django.urls import re_path, path
 
 urlpatterns = [
     re_path('get_projects', views.get_projects),
-    re_path('video_feed', views.video_feed),
-    re_path('object_detection', views.video_feed_object_detection)
+    path('video_feed/<int:id>/', views.video_feed),
+    path('object_detection/<int:id>/', views.video_feed_object_detection),
+    path('test/<int:id>/', views.test),
 ]

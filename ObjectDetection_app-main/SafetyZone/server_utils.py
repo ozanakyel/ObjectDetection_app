@@ -93,9 +93,9 @@ def draw_polly_and_check_isin(image, boxes, scores, classes):
 
                     image = draw_poly(image, polly_point, draw_isIn)
     image = show_ok_nok(image, draw_isIn)
-    message = []
-    message.append({"IsIn" : str(draw_isIn), "PollyIsIn": polly_is_in, "Header": "Başarılı", "Message": "", "Date": str(datetime.now().strftime("%d/%m/%Y %H:%M:%S"))})
-    WEB_SOCKET.send(str(message))
+    # message = []
+    # message.append({"IsIn" : str(draw_isIn), "PollyIsIn": polly_is_in, "Header": "Başarılı", "Message": "", "Date": str(datetime.now().strftime("%d/%m/%Y %H:%M:%S"))})
+    # WEB_SOCKET.send(str(message))
 
 
             # isIn = check_rois(image, ROIS_POLY_POINT_LIST[0], box, RoiAlign[0]['configValue'])

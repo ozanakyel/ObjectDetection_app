@@ -1,7 +1,7 @@
 <template>
   <div class="middle">
     <div class="card">
-      <div v-for="(item,index) in projects" class="cards" @click="goToProject($event)" :key="index">
+      <div v-for="(item,index) in projects" class="cards" @click="goToProject($event, index)" :key="index">
         <div class="cards-inside">
           <div class="header">
             <h3>{{item.name}}</h3>
@@ -36,10 +36,11 @@ export default {
     }
   },
   methods: {
-    goToProject (event) {
+    goToProject (event, index) {
       if (event.target.className !== 'change-text') {
         this.$router.push({
-          name: 'Project'
+          name: 'Project',
+          params: { selectedProject: index }
         })
       }
     }

@@ -26,8 +26,8 @@
         </div>
       </div>
       <div class="body">
-        <div><img class="images" src="http://127.0.0.1:8000/video_feed" width="100%" height="630"></div>
-        <div><img class="images" src="http://127.0.0.1:8000/object_detection" width="100%" height="630"></div>
+        <div><img class="images" width="100%" height="630" :src="video_feed"></div>
+        <div><img class="images" width="100%" height="630" :src="object_detection"></div>
       </div>
       <div class="ok-nok">
         <template v-for="(item,index) in ok_nok" :key="index">
@@ -131,7 +131,9 @@ export default {
   data () {
     return {
       connection: null,
-      ok_nok: 2
+      ok_nok: 2,
+      video_feed: 'http://127.0.0.1:8000/video_feed/' + this.$route.params.selectedProject,
+      object_detection: 'http://127.0.0.1:8000/object_detection/' + this.$route.params.selectedProject
     }
   },
   components: {
@@ -158,6 +160,7 @@ export default {
     }
   },
   created () {
+    console.log(this.$route.params.selectedProject)
     const url = 'ws://127.0.0.1:8081/ws/socket-server/'
 
     const chatSocket = new WebSocket(url)
