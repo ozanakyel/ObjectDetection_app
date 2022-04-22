@@ -166,7 +166,7 @@ export default {
       const data = JSON.parse(e.data)
       var parser = JSON.parse(data.message.replaceAll('\'', '"'))
       // const html = '<div class="butons"><span class="status"></span><span style="margin-left: 3px;margin-right: 6px;">OK</span></div>'
-      console.log('Data:', parser[0].PollyIsIn[parser[0].PollyIsIn.length - 1])
+      // console.log('Data:', parser[0])
 
       if (data.type === 'chat') {
         const messages = document.querySelectorAll('.ok-nok .butons .status')

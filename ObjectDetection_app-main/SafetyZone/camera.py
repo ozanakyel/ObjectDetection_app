@@ -5,7 +5,7 @@ import time
 # import os
 
 
-from SafetyZone.models import Project, Config, ProjectConfig
+from SafetyZone.models import *
 # from SafetyZone import rois 
 # from django.conf import settings
 from SafetyZone import object_detector
@@ -47,7 +47,7 @@ class VideoCamera(object):
         self.display_time = 1
         self.fc = 0
         self.FPS = 0
-        print("başladı")
+
         # threading.Thread(target=self.update, args=(), daemon=True).start()
         threading.Thread(target=self.get_frame, args=(), daemon=True).start()
 
@@ -57,6 +57,7 @@ class VideoCamera(object):
     def get_frame(self):
         while True:
             (self.grabbed, self.frame) = self.video.read()
+            # self.frame = cv2.resize(self.frame, [200,200])
             image = self.frame
             self.fc+=1
             TIME = time.time() - self.start_time

@@ -1,6 +1,6 @@
 from django.db.models import fields
 from rest_framework import serializers
-from SafetyZone.models import Project,Config,ProjectConfig
+from SafetyZone.models import *
 
 class ProjectSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -14,5 +14,5 @@ class ConfigSerializer(serializers.HyperlinkedModelSerializer):
         
 class ProjectConfigSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = ProjectConfig
+        model = ConfigKeyValues
         fields=('projectID', 'configKeyID', 'configValue')
