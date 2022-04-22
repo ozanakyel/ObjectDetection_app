@@ -192,7 +192,13 @@ body {
   margin: 10px 0;
   padding: 0 15px;
 }
-
+.middle .pop-up-card .cards-card .inputs {
+  display: grid;
+  grid-template-columns: auto auto;
+  background-color: aliceblue;
+  margin: 5px;
+  border-radius: 5px;
+}
 .middle .pop-up-card .cards-card .items .input label{
   margin-right: 5px;
   font-size: 15px
