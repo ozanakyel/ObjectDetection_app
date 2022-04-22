@@ -12,7 +12,7 @@
   font-weight: 400;
   position: relative;
   margin: auto;
-  margin-top: 10px;
+  margin-top: 5px;
 }
 h3 {
   font-size: 20px;
@@ -45,7 +45,7 @@ body {
 .middle .card .cards {
   flex: 25%;
   background-color: white;
-  box-shadow: rgba(100, 100, 111, 0.075) 0px 7px 29px 0px;
+  box-shadow: rgba(141, 141, 155, 0.075) 0px 7px 29px 0px;
   border-radius: 30px;
   padding: 0 3px 0 3px;
   margin: 10px;
@@ -55,14 +55,14 @@ body {
   cursor: pointer;
 }
 .middle .card .cards:hover {
-  box-shadow: rgba(151, 151, 151, 0.329) 0px 0px 15px 7px;
+  box-shadow: rgba(151, 151, 151, 0.178) 0px 0px 15px 7px;
   /* transition-duration: 0.2s;
   transform: scale(1.01); */
 }
 .middle .card .cards .cards-inside .header {
   text-align: center;
   padding: 5px 23px 10px 23px;
-  border: 1px solid rgba(0, 0, 0, 0.164);
+  border: 1px solid rgba(0, 0, 0, 0.137);
   border-top: 0;
   border-left: 0;
   border-right: 0;
@@ -70,10 +70,10 @@ body {
 .middle .card .cards .cards-inside .body {
   padding: 12px;
   font-size: 12px;
-  border: 1px solid rgba(0, 0, 0, 0.164);
+  /* border: 1px solid rgba(0, 0, 0, 0.164);
   border-top: 0;
   border-left: 0;
-  border-right: 0;
+  border-right: 0; */
 }
 .middle .card .cards .cards-inside .run-stop {
   display: flex;
