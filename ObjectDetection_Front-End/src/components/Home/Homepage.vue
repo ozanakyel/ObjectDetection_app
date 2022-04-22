@@ -28,7 +28,7 @@
       <div class="change">
         <p class="change-text" @click="popUp">Proje Ekle +</p>
       </div>
-      <div class="pop-up-card" @click="popUpClose($event)" style="display: flex;">
+      <div class="pop-up-card" @click="popUpClose($event)">
         <div class="cards-card">
             <div class="body">
               <div class="items">
@@ -38,24 +38,19 @@
                 </div>
                 <div class="inputs">
                   <div class="input">
-                    <label for="pname">Proje Adı:</label>
-                    <input type="text" id="pname" name="lname">
+                    <div style="margin: 0;padding: 0;display: flex;align-items: baseline;justify-content: space-between;"><label for="pname">Proje Adı:</label><input type="text" id="pname" name="lname"></div>
                   </div>
                   <div class="input">
-                    <label for="pname">Proje Adı:</label>
-                    <input type="text" id="pname" name="lname">
+                    <div style="margin: 0;padding: 0;display: flex;align-items: baseline;justify-content: space-between;"><label for="pname">Proje Adı:</label><input type="text" id="pname" name="lname"></div>
                   </div>
                   <div class="input">
-                    <label for="pname">Proje Adı:</label>
-                    <input type="text" id="pname" name="lname">
+                    <div style="margin: 0;padding: 0;display: flex;align-items: baseline;justify-content: space-between;"><label for="pname">Proje Adı:</label><input type="text" id="pname" name="lname"></div>
                   </div>
                   <div class="input">
-                    <label for="pname">Proje Adııııı:</label>
-                    <input type="text" id="pname" name="lname">
+                    <div style="margin: 0;padding: 0;display: flex;align-items: baseline;justify-content: space-between;"><label for="pname">Proje Adı:</label><input type="text" id="pname" name="lname"></div>
                   </div>
                   <div class="input">
-                    <label for="pname">Proje Adı:</label>
-                    <input type="text" id="pname" name="lname">
+                    <div style="margin: 0;padding: 0;display: flex;align-items: baseline;justify-content: space-between;"><label for="pname">Proje Adı:</label><input type="text" id="pname" name="lname"></div>
                   </div>
                 </div>
                 <div class="send kaydet">
