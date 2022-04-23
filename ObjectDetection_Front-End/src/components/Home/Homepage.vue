@@ -39,7 +39,7 @@
                 </div>
                 <div class="inputs">
                   <div class="input" v-for="item in input_data" :key="item">
-                    <div style="margin: 0;padding: 0;display: flex;align-items: baseline;justify-content: space-between;"><span style="font-weight: 400;margin-right: 5px">{{item}}:</span><template v-if="item == 'Plant'"><input type="number" min="0" :name="item"></template><template v-else-if="item == 'Kamera Tipi'"><select style="width: 201px;height: 30px;" :name="item"><option value="ipCamera">IP Kamera</option></select></template><template v-else><input type="text" :name="item"></template></div>
+                    <div style="margin: 0;padding: 0;display: flex;align-items: center;justify-content: space-between;"><span style="font-weight: 400;margin-right: 5px">{{item}}:</span><template v-if="item == 'Plant'"><input type="number" min="0" :name="item"></template><template v-else-if="item == 'Kamera Tipi'"><select style="width: 201px;height: 30px;" :name="item"><option value="ipCamera">IP Kamera</option></select></template><template v-else><input type="text" :name="item"></template></div>
                   </div>
                 </div>
                 <div class="send kaydet">
@@ -71,7 +71,7 @@
                     </select>
                   </div>
                   <div class="input configupdate" style="display: none;padding: 0">
-                    <div style="margin: 0;padding: 0;display: flex;align-items: baseline;justify-content: space-between;"><span style="font-weight: 400;margin-right: 5px">Yeni Değer:</span><input type="text" name="newconfigvalue"></div>
+                    <div style="margin: 0;padding: 0;display: flex;align-items: center;justify-content: space-between;"><span style="font-weight: 400;font-size: 16px;margin-right: 5px">Yeni Değer:</span><input type="text" name="newconfigvalue"></div>
                   </div>
                 </div>
                 <div class="send update">

@@ -202,6 +202,9 @@ body {
   margin: 5px;
   border-radius: 5px;
 }
+.middle .pop-up-card .cards-card .items .input {
+  margin-right: 10px;
+}
 .middle .pop-up-card .cards-card .items .input label{
   margin-right: 5px;
   font-size: 15px
