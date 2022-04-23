@@ -17,10 +17,10 @@ from SafetyZone.serializers import ProjectSerializer,ConfigSerializer,ProjectCon
 running_projects = []
 for item in Project.objects.all().values():
     print(item, item['cameraIP'])
-    # if item['cameraIP'] == '0':
-    #     running_projects.append(VideoCamera())
-    # else:
-    #     running_projects.append(VideoCamera(item['cameraIP']))
+    if item['cameraIP'] == '0':
+        running_projects.append(VideoCamera(item['name']))
+    else:
+        running_projects.append(VideoCamera(item['name'], item['cameraIP']))
 
 
 
@@ -72,7 +72,6 @@ def get_configs(request, id = 0):
         return JsonResponse(configs_serializer.data, safe=False)
     elif request.method == 'PUT':
         configs_data = JSONParser().parse(request)
-        print(configs_data)
         config = ConfigValue.objects.filter(projectID = configs_data['projectID_id'], configKeyID = configs_data['configKeyID_id']).first()
         if config == None:
             config = Config.objects.get(configKeyID = int(configs_data['configKeyID_id']))
@@ -84,7 +83,17 @@ def get_configs(request, id = 0):
             configs_serializer = ProjectConfigSerializer(config, data = configs_data)
             if configs_serializer.is_valid():
                 configs_serializer.save()
-                # running_projects.append(VideoCamera())
+                # project = Project.objects.filter(projectID = int(configs_data['projectID_id'])).values()[0]
+                # print(project)
+                # for i in range(len(running_projects)):
+                #     if project['name'] == running_projects[i].project_name:
+                #         running_projects.pop(i)
+                #         del running_projects[i]
+                #         print(running_projects)
+                        # if project['cameraIP'] == '0':
+                        #     running_projects.append(VideoCamera(project['name']))
+                        # else:
+                        #     running_projects.append(VideoCamera(project['name'], project['cameraIP']))
                 return JsonResponse("Updated Successfully", safe = False)
             else:
                 print(configs_serializer.errors)

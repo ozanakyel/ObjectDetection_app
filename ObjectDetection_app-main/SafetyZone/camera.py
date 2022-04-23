@@ -1,6 +1,7 @@
 import threading
 import cv2
 import time
+import sys
 # import numpy as np
 # import os
 
@@ -35,12 +36,13 @@ from .server_utils import draw_polly_and_check_isin
 MODEL_NAME = 'Fast-Rcnn'
 
 class VideoCamera(object):
-    def __init__(self, camera_ip=0):
+    def __init__(self, project_name,camera_ip=0):
         # self.video = cv2.VideoCapture('rtsp://admin:Abc1234*@10.16.222.253/')
         self.video = cv2.VideoCapture(camera_ip)
         (self.grabbed, self.frame) = self.video.read()
         self.jpeg = None
         self.image = None
+        self.project_name = project_name
         self.detect = object_detector.ObjectDetection()
         # self.detect.setDaemon(True)
         self.start_time = time.time()
@@ -52,7 +54,10 @@ class VideoCamera(object):
         threading.Thread(target=self.get_frame, args=(), daemon=True).start()
 
     def __del__(self):
+        print(self.project_name, "girdi")
+        # sys.exit()
         self.video.release()
+
 
     def get_frame(self):
         while True:
