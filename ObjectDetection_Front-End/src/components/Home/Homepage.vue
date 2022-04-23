@@ -59,23 +59,23 @@
                 </div>
                 <div class="inputs" style="grid-template-columns: auto auto auto;margin: 0">
                   <div class="input" style="padding: 0">
-                    <select style="width: 221px;height: 30px;" @change="showconfig">
+                    <select style="width: 221px;height: 30px;" @change="showconfig" name="projectconfigupdate">
                         <option value="default" selected="true" disabled="disabled" hidden>Proje Şeçin</option>
-                        <option v-for="item,index in projects" :key="index">{{item.name}}</option>
+                        <option v-for="item,index in projects" :key="index" :name="item.projectID">{{item.name}}</option>
                     </select>
                   </div>
                   <div class="input configupdate" style="display: none;padding: 0;">
-                    <select style="width: 221px;height: 30px;">
+                    <select style="width: 221px;height: 30px;" name="configupdate">
                         <option value="default" selected="true" disabled="disabled" hidden>Değiştirilece Ayarı Şeçin</option>
-                        <option v-for="item,index in configs" :key="index">{{item.configName}}</option>
+                        <option v-for="item,index in configs" :key="index" :name="item.configKeyID">{{item.configName}}</option>
                     </select>
                   </div>
                   <div class="input configupdate" style="display: none;padding: 0">
-                    <div style="margin: 0;padding: 0;display: flex;align-items: baseline;justify-content: space-between;"><span style="font-weight: 400;margin-right: 5px">Yeni Değer:</span><input type="text"></div>
+                    <div style="margin: 0;padding: 0;display: flex;align-items: baseline;justify-content: space-between;"><span style="font-weight: 400;margin-right: 5px">Yeni Değer:</span><input type="text" name="newconfigvalue"></div>
                   </div>
                 </div>
                 <div class="send update">
-                    <p @click="addProject">GÜNCELLE</p>
+                    <p @click="updateProject">GÜNCELLE</p>
                 </div>
               </div>
             </div>
@@ -138,6 +138,22 @@ export default {
           cameraType: document.querySelector('[name="' + this.input_data[3] + '"]').options[document.querySelector('[name="' + this.input_data[3] + '"]').selectedIndex].value,
           userName: document.querySelector('[name="' + this.input_data[4] + '"]').value,
           userPassword: document.querySelector('[name="' + this.input_data[5] + '"]').value
+        })
+      })
+        .then(response => response.json())
+        .then(data => {
+          alert(data)
+          location.reload()
+        })
+    },
+    updateProject () {
+      fetch('http://127.0.0.1:8000/get_configs', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          projectID_id: document.querySelector('[name="projectconfigupdate"]').options[document.querySelector('[name="projectconfigupdate"]').selectedIndex].attributes.name.value,
+          configKeyID_id: document.querySelector('[name="configupdate"]').options[document.querySelector('[name="configupdate"]').selectedIndex].attributes.name.value,
+          configValue: document.querySelector('[name="newconfigvalue"]').value
         })
       })
         .then(response => response.json())

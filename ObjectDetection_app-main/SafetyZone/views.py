@@ -69,11 +69,14 @@ def get_configs(request, id = 0):
         configs = Config.objects.all()
         configs_serializer = ConfigSerializer(configs, many = True)
         return JsonResponse(configs_serializer.data, safe=False)
-    elif request.method == 'POST':
-        projects_data = JSONParser().parse(request)
-        patient_serializer = ProjectSerializer(data = projects_data)
-        if patient_serializer.is_valid():
-            patient_serializer.save()
-            running_projects.append(VideoCamera())
-            return JsonResponse("Added Successfully", safe = False)
-        return JsonResponse("Failed to Add", safe = False)
+    elif request.method == 'PUT':
+        configs_data = JSONParser().parse(request)
+        # print(configs_data)
+        config = ConfigValue.objects.filter(projectID = configs_data['projectID_id'], configKeyID = configs_data['configKeyID_id']).first()
+        # print(config)
+        configs_serializer = ProjectConfigSerializer(config, data = configs_data)
+        if configs_serializer.is_valid():
+            configs_serializer.save()
+            # running_projects.append(VideoCamera())
+            return JsonResponse("Updated Successfully", safe = False)
+        return JsonResponse("Failed to Update", safe = False)

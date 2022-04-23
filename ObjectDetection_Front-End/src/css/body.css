@@ -37,3 +37,9 @@ span {
   font-size: 14px;
   font-weight: 600;
 }
+select {
+  border: 1px solid #ada9a930;
+}
+input {
+  border: 1px solid #ada9a930;
+}
