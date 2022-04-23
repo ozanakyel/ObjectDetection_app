@@ -60,5 +60,6 @@ def get_projects(request, id = 0):
         patient_serializer = ProjectSerializer(data = projects_data)
         if patient_serializer.is_valid():
             patient_serializer.save()
+            running_projects.append(VideoCamera())
             return JsonResponse("Added Successfully", safe = False)
         return JsonResponse("Failed to Add", safe = False)
