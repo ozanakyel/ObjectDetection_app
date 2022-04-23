@@ -10,7 +10,7 @@ class ProjectSerializer(serializers.HyperlinkedModelSerializer):
 class ConfigSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Config
-        fields=('configKeyID', 'configKey')
+        fields=('configKeyID', 'configName')
         
 class ProjectConfigSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:

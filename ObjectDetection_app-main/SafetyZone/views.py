@@ -63,3 +63,17 @@ def get_projects(request, id = 0):
             running_projects.append(VideoCamera())
             return JsonResponse("Added Successfully", safe = False)
         return JsonResponse("Failed to Add", safe = False)
+@csrf_exempt
+def get_configs(request, id = 0):
+    if request.method == "GET":
+        configs = Config.objects.all()
+        configs_serializer = ConfigSerializer(configs, many = True)
+        return JsonResponse(configs_serializer.data, safe=False)
+    elif request.method == 'POST':
+        projects_data = JSONParser().parse(request)
+        patient_serializer = ProjectSerializer(data = projects_data)
+        if patient_serializer.is_valid():
+            patient_serializer.save()
+            running_projects.append(VideoCamera())
+            return JsonResponse("Added Successfully", safe = False)
+        return JsonResponse("Failed to Add", safe = False)

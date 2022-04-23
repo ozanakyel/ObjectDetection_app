@@ -94,6 +94,7 @@ body {
 }
 .middle .card .cards .cards-inside .run-stop .change p {
   padding: 12px;
+  text-align: left;
 }
 .middle .card .cards .cards-inside .run-stop .change:hover {
   background-color: #11823b;
@@ -127,7 +128,7 @@ body {
   width: fit-content;
   color: #11823b;
   /* border-radius: 5px; */
-  text-align: center;
+  text-align: left;
   cursor: pointer;
 }
 .middle .add-project .change p {

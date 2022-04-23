@@ -26,9 +26,10 @@
       </div>
       <div class="add-project">
       <div class="change">
-        <p class="change-text" @click="popUp">Proje Ekle +</p>
+        <p class="change-text" @click="popUpAdd">Proje Ekle +</p>
+        <p class="change-text" @click="popUpUpdate">Proje Güncelle +</p>
       </div>
-      <div class="pop-up-card" @click="popUpClose($event)">
+      <div class="pop-up-card add" @click="popUpClose($event)">
         <div class="cards-card">
             <div class="body">
               <div class="items">
@@ -48,6 +49,38 @@
             </div>
         </div>
       </div>
+      <div class="pop-up-card update" @click="popUpClose($event)">
+        <div class="cards-card">
+            <div class="body">
+              <div class="items">
+                <div class="head">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-stop-circle"><circle cx="12" cy="12" r="10"></circle><rect x="9" y="9" width="6" height="6"></rect></svg>
+                    <span>Proje Güncelle</span>
+                </div>
+                <div class="inputs" style="grid-template-columns: auto auto auto;margin: 0">
+                  <div class="input" style="padding: 0">
+                    <select style="width: 221px;height: 30px;" @change="showconfig">
+                        <option value="default" selected="true" disabled="disabled" hidden>Proje Şeçin</option>
+                        <option v-for="item,index in projects" :key="index">{{item.name}}</option>
+                    </select>
+                  </div>
+                  <div class="input configupdate" style="display: none;padding: 0;">
+                    <select style="width: 221px;height: 30px;">
+                        <option value="default" selected="true" disabled="disabled" hidden>Değiştirilece Ayarı Şeçin</option>
+                        <option v-for="item,index in configs" :key="index">{{item.configName}}</option>
+                    </select>
+                  </div>
+                  <div class="input configupdate" style="display: none;padding: 0">
+                    <div style="margin: 0;padding: 0;display: flex;align-items: baseline;justify-content: space-between;"><span style="font-weight: 400;margin-right: 5px">Yeni Değer:</span><input type="text"></div>
+                  </div>
+                </div>
+                <div class="send update">
+                    <p @click="addProject">GÜNCELLE</p>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
     </div>
     </div>
   </div>
@@ -59,6 +92,7 @@ export default {
   data () {
     return {
       projects: [],
+      configs: [],
       video_feed: 'http://127.0.0.1:8000/video_feed/0',
       object_detection: 'http://127.0.0.1:8000/object_detection/',
       input_data: ['Plant', 'Proje Adı', 'Kamera IP', 'Kamera Tipi', 'Kullanıcı Adı', 'Kullanıcı Şifre']
@@ -73,15 +107,25 @@ export default {
         })
       }
     },
-    popUp () {
-      document.querySelector('.pop-up-card').style.display = 'flex'
+    popUpAdd () {
+      // document.querySelector('.pop-up-card .update').style.display = null
+      document.querySelector('.add').style.display = 'flex'
+    },
+    popUpUpdate () {
+      // document.querySelector('.pop-up-card .add').style.display = null
+      document.querySelector('.update').style.display = 'flex'
     },
     popUpClose (event) {
-      if (event.target.className === 'pop-up-card') {
+      if (event.target.className.split(' ')[0] === 'pop-up-card') {
         document.querySelectorAll('.pop-up-card').forEach(element => {
           element.style.display = 'none'
         })
       }
+    },
+    showconfig () {
+      document.querySelectorAll('.configupdate').forEach(element => {
+        element.style.display = 'flex'
+      })
     },
     addProject () {
       fetch('http://127.0.0.1:8000/get_projects', {
@@ -111,6 +155,13 @@ export default {
       .then(data => {
         this.projects = data
         // console.log(data)
+      })
+    fetch('http://127.0.0.1:8000/get_configs', {
+      method: 'GET'
+    })
+      .then(response => response.json())
+      .then(data => {
+        this.configs = data
       })
   },
   mounted () {
