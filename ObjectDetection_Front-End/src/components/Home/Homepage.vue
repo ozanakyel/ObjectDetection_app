@@ -37,12 +37,12 @@
                     <span>Proje Ekle</span>
                 </div>
                 <div class="inputs">
-                  <div class="input" v-for="item in 10" :key="item">
-                    <div style="margin: 0;padding: 0;display: flex;align-items: baseline;justify-content: space-between;"><label for="pname">Proje Adı:</label><input type="text" id="pname" name="lname"></div>
+                  <div class="input" v-for="item in input_data" :key="item">
+                    <div style="margin: 0;padding: 0;display: flex;align-items: baseline;justify-content: space-between;"><span style="font-weight: 400;margin-right: 5px">{{item}}:</span><template v-if="item == 'Plant'"><input type="number" min="0" :name="item"></template><template v-else-if="item == 'Kamera Tipi'"><select style="width: 201px;height: 30px;" :name="item"><option value="ipCamera">IP Kamera</option></select></template><template v-else><input type="text" :name="item"></template></div>
                   </div>
                 </div>
                 <div class="send kaydet">
-                    <p>EKLE</p>
+                    <p @click="addProject">EKLE</p>
                 </div>
               </div>
             </div>
@@ -60,7 +60,8 @@ export default {
     return {
       projects: [],
       video_feed: 'http://127.0.0.1:8000/video_feed/0',
-      object_detection: 'http://127.0.0.1:8000/object_detection/'
+      object_detection: 'http://127.0.0.1:8000/object_detection/',
+      input_data: ['Plant', 'Proje Adı', 'Kamera IP', 'Kamera Tipi', 'Kullanıcı Adı', 'Kullanıcı Şifre']
     }
   },
   methods: {
@@ -81,6 +82,25 @@ export default {
           element.style.display = 'none'
         })
       }
+    },
+    addProject () {
+      fetch('http://127.0.0.1:8000/get_projects', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          plant: document.querySelector('[name="' + this.input_data[0] + '"]').value,
+          name: document.querySelector('[name="' + this.input_data[1] + '"]').value,
+          cameraIP: document.querySelector('[name="' + this.input_data[2] + '"]').value,
+          cameraType: document.querySelector('[name="' + this.input_data[3] + '"]').options[document.querySelector('[name="' + this.input_data[3] + '"]').selectedIndex].value,
+          userName: document.querySelector('[name="' + this.input_data[4] + '"]').value,
+          userPassword: document.querySelector('[name="' + this.input_data[5] + '"]').value
+        })
+      })
+        .then(response => response.json())
+        .then(data => {
+          alert(data)
+          location.reload()
+        })
     }
   },
   created () {
@@ -90,7 +110,7 @@ export default {
       .then(response => response.json())
       .then(data => {
         this.projects = data
-        console.log(data)
+        // console.log(data)
       })
   },
   mounted () {
