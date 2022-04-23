@@ -37,19 +37,7 @@
                     <span>Proje Ekle</span>
                 </div>
                 <div class="inputs">
-                  <div class="input">
-                    <div style="margin: 0;padding: 0;display: flex;align-items: baseline;justify-content: space-between;"><label for="pname">Proje Adı:</label><input type="text" id="pname" name="lname"></div>
-                  </div>
-                  <div class="input">
-                    <div style="margin: 0;padding: 0;display: flex;align-items: baseline;justify-content: space-between;"><label for="pname">Proje Adı:</label><input type="text" id="pname" name="lname"></div>
-                  </div>
-                  <div class="input">
-                    <div style="margin: 0;padding: 0;display: flex;align-items: baseline;justify-content: space-between;"><label for="pname">Proje Adı:</label><input type="text" id="pname" name="lname"></div>
-                  </div>
-                  <div class="input">
-                    <div style="margin: 0;padding: 0;display: flex;align-items: baseline;justify-content: space-between;"><label for="pname">Proje Adı:</label><input type="text" id="pname" name="lname"></div>
-                  </div>
-                  <div class="input">
+                  <div class="input" v-for="item in 10" :key="item">
                     <div style="margin: 0;padding: 0;display: flex;align-items: baseline;justify-content: space-between;"><label for="pname">Proje Adı:</label><input type="text" id="pname" name="lname"></div>
                   </div>
                 </div>

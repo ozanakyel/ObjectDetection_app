@@ -28,6 +28,7 @@ body {
   display: flex;
   width: 100%;
   margin: auto;
+  background-color: aliceblue;
 }
 .middle .card {
   display: flex;
@@ -41,6 +42,7 @@ body {
   max-height: fit-content;
   min-height: fit-content;
   padding: 35px;
+  border: none;
 }
 .middle .card .cards {
   flex: 25%;
