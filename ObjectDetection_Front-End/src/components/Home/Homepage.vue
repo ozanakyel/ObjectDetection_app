@@ -33,13 +33,18 @@
         <div class="cards-card">
             <div class="body">
               <div class="items">
-                <div class="head">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
-                    <span>Proje Ekle</span>
+                <div class="head" style="padding: 16px;">
+                    <!-- <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+                    <span></span> -->
                 </div>
                 <div class="inputs">
                   <div class="input" v-for="item in input_data" :key="item">
                     <div style="margin: 0;padding: 0;display: flex;align-items: center;justify-content: space-between;"><span style="font-weight: 400;margin-right: 5px">{{item}}:</span><template v-if="item == 'Plant'"><input type="number" min="0" :name="item"></template><template v-else-if="item == 'Kamera Tipi'"><select style="width: 201px;height: 30px;" :name="item"><option value="ipCamera">IP Kamera</option></select></template><template v-else><input type="text" :name="item"></template></div>
+                  </div>
+                </div>
+                <div class="inputs" style="border-top: 1px solid #ada9a930;grid-template-columns: auto auto auto">
+                  <div class="input" v-for="item in configs" :key="item">
+                    <div style="margin: 0;padding: 0;display: flex;align-items: center;justify-content: space-between;"><span style="font-weight: 400;margin-right: 5px">{{item.configName}}:</span><template v-if="item == 'Plant'"><input type="number" min="0" :name="item"></template><template v-else-if="item == 'Kamera Tipi'"><select style="width: 201px;height: 30px;" :name="item"><option value="ipCamera">IP Kamera</option></select></template><template v-else><input type="text" :name="item"></template></div>
                   </div>
                 </div>
                 <div class="send kaydet">
@@ -53,9 +58,9 @@
         <div class="cards-card">
             <div class="body">
               <div class="items">
-                <div class="head">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-stop-circle"><circle cx="12" cy="12" r="10"></circle><rect x="9" y="9" width="6" height="6"></rect></svg>
-                    <span>Proje Güncelle</span>
+                <div class="head" style="padding: 16px;">
+                    <!-- <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-stop-circle"><circle cx="12" cy="12" r="10"></circle><rect x="9" y="9" width="6" height="6"></rect></svg>
+                    <span>Proje Güncelle</span> -->
                 </div>
                 <div class="inputs" style="grid-template-columns: auto auto auto;margin: 0">
                   <div class="input" style="padding: 0">
