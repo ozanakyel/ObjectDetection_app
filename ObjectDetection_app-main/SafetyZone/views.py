@@ -15,12 +15,12 @@ from SafetyZone.serializers import ProjectSerializer,ConfigSerializer,ProjectCon
 
 
 running_projects = []
-# for item in Project.objects.all().values():
-#     print(item, item['cameraIP'])
-#     if item['cameraIP'] == '0':
-#         running_projects.append(VideoCamera(item['name'],item['modelName']))
-#     else:
-#         running_projects.append(VideoCamera(item['name'], item['cameraIP'], item['modelName']))
+for item in Project.objects.all().values():
+    print(item, item['cameraIP'])
+    if item['cameraIP'] == '0':
+        running_projects.append(VideoCamera(item['name'],item['modelName']))
+    else:
+        running_projects.append(VideoCamera(item['name'], item['cameraIP'], item['modelName']))
 
 
 

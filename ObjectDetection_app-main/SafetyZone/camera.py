@@ -44,7 +44,7 @@ class VideoCamera(object):
         self.image = None
         self.project_name = project_name
         self.MODEL_NAME = model_name
-        self.detect = object_detector.ObjectDetection()
+        self.detect = object_detector.ObjectDetection(model_name)
         # self.detect.setDaemon(True)
         self.start_time = time.time()
         self.display_time = 1
