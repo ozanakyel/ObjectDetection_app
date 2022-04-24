@@ -39,7 +39,7 @@
                 </div>
                 <div class="inputs">
                   <div class="input" v-for="item in input_data" :key="item">
-                    <div style="margin: 0;padding: 0;display: flex;align-items: center;justify-content: space-between;"><span style="font-weight: 400;margin-right: 5px">{{item}}:</span><template v-if="item == 'Plant'"><input type="number" min="0" :name="item"></template><template v-else-if="item == 'Model Adı'"><select style="width: 201px;height: 30px;" :name="item"><option value="Fast-Rcnn">Fast-Rcnn</option><option value="Mask-Rcnn">Mask-Rcnn</option></select></template><template v-else-if="item == 'Kamera Tipi'"><select style="width: 201px;height: 30px;" :name="item"><option value="ipCamera">IP Kamera</option></select></template><template v-else><input type="text" :name="item"></template></div>
+                    <div style="margin: 0;padding: 0;display: flex;align-items: center;justify-content: space-between;"><span style="font-weight: 400;margin-right: 5px">{{item}}:</span><template v-if="item == 'Plant'"><input type="number" min="0" :name="item"></template><template v-else-if="item == 'Model Adı'"><select style="width: 201px;height: 30px;" :name="item"><option value="Fast-Rcnn">Fast-Rcnn</option><option value="Ssd">Ssd</option><option value="Mask-Rcnn">Mask-Rcnn</option></select></template><template v-else-if="item == 'Kamera Tipi'"><select style="width: 201px;height: 30px;" :name="item"><option value="ipCamera">IP Kamera</option></select></template><template v-else><input type="text" :name="item"></template></div>
                   </div>
                 </div>
                 <div class="inputs" style="border-top: 1px solid #ada9a930;grid-template-columns: auto auto auto">

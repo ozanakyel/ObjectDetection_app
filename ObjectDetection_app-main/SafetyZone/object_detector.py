@@ -18,23 +18,20 @@ from object_detection.utils import ops as utils_ops
 from tensorflow import ConfigProto
 from tensorflow import InteractiveSession
 
-# MODEL_NAME = 'mask_rcnn_inception_v2_coco_2018_01_28'
-# MODEL_NAME = 'faster_rcnn_inception_v2_coco_2018_01_28'
-MODEL_NAME = 'ssd_inception_v2_coco_2018_01_28' 
+MODEL_NAME_MASKRCNN = 'mask_rcnn_inception_v2_coco_2018_01_28'
+MODEL_NAME_FASTRCNN = 'faster_rcnn_inception_v2_coco_2018_01_28'
+MODEL_NAME_SSD = 'ssd_inception_v2_coco_2018_01_28' 
 LABEL_MAP = 'mscoco_label_map.pbtxt'
 NUM_CLASSES = 5
 
 class ObjectDetection(object):
-    def __init__(self):
+    def __init__(self, MODEL_NAME):
         self.config = ConfigProto()
         self.config.gpu_options.allow_growth = True
         self.config.gpu_options.per_process_gpu_memory_fraction = 0.8
         self.session = InteractiveSession(config=self.config)
 
         self.CWD_PATH = os.getcwd()
-
-        self.PATH_TO_CKPT = os.path.join(self.CWD_PATH, 'SafetyZone\object_detection', MODEL_NAME, 'frozen_inference_graph.pb')
-
 
         # Path to label map file
         self.PATH_TO_LABELS = os.path.join(self.CWD_PATH,'SafetyZone\object_detection\data',LABEL_MAP)
@@ -45,32 +42,8 @@ class ObjectDetection(object):
         self.category_index = label_map_util.create_category_index(self.categories)
 
         # # Load the Tensorflow model into memory.
-        self.detection_graph = tf.Graph()
-        with self.detection_graph.as_default():
-            self.od_graph_def = tf.GraphDef()
-            with tf.gfile.GFile(self.PATH_TO_CKPT, 'rb') as fid:
-                self.serialized_graph = fid.read()
-                self.od_graph_def.ParseFromString(self.serialized_graph)
-                tf.import_graph_def(self.od_graph_def, name='')
+        
 
-            self.sess = tf.Session(graph=self.detection_graph)
-
-        # # Define input and output tensors (i.e. data) for the object detection classifier
-
-        # # Input tensor is the image
-        self.image_tensor = self.detection_graph.get_tensor_by_name('image_tensor:0')
-
-        # # Output tensors are the detection boxes, scores, and classes
-        # # Each box represents a part of the image where a particular object was detected
-        self.detection_boxes = self.detection_graph.get_tensor_by_name('detection_boxes:0')
-
-        # # Each score represents level of confidence for each of the objects.
-        # # The score is shown on the result image, together with the class label.
-        self.detection_scores = self.detection_graph.get_tensor_by_name('detection_scores:0')
-        self.detection_classes = self.detection_graph.get_tensor_by_name('detection_classes:0')
-
-        # # Number of objects detected
-        self.num_detections = self.detection_graph.get_tensor_by_name('num_detections:0')
 
 
     def run_inference_for_single_image(image, graph):
@@ -119,14 +92,44 @@ class ObjectDetection(object):
                     output_dict['detection_masks'] = output_dict['detection_masks'][0]
         return output_dict
     def object_detection(self, image, model_name):
-        if model_name == 'Fast-Rcnn':
+        if model_name == 'Fast-Rcnn' or model_name == 'Ssd':
+            if model_name == 'Ssd':
+                PATH_TO_CKPT = os.path.join(self.CWD_PATH, 'SafetyZone\object_detection', MODEL_NAME_SSD, 'frozen_inference_graph.pb')
+            else:
+                PATH_TO_CKPT = os.path.join(self.CWD_PATH, 'SafetyZone\object_detection', MODEL_NAME_FASTRCNN, 'frozen_inference_graph.pb')
+            detection_graph = tf.Graph()
+            with detection_graph.as_default():
+                od_graph_def = tf.GraphDef()
+                with tf.gfile.GFile(PATH_TO_CKPT, 'rb') as fid:
+                    serialized_graph = fid.read()
+                    od_graph_def.ParseFromString(serialized_graph)
+                    tf.import_graph_def(od_graph_def, name='')
+
+                sess = tf.Session(graph=detection_graph)
+             # # Define input and output tensors (i.e. data) for the object detection classifier
+
+            # # Input tensor is the image
+            image_tensor = detection_graph.get_tensor_by_name('image_tensor:0')
+
+            # # Output tensors are the detection boxes, scores, and classes
+            # # Each box represents a part of the image where a particular object was detected
+            detection_boxes = detection_graph.get_tensor_by_name('detection_boxes:0')
+
+            # # Each score represents level of confidence for each of the objects.
+            # # The score is shown on the result image, together with the class label.
+            detection_scores = detection_graph.get_tensor_by_name('detection_scores:0')
+            detection_classes = detection_graph.get_tensor_by_name('detection_classes:0')
+
+            # # Number of objects detected
+            num_detections = detection_graph.get_tensor_by_name('num_detections:0')
+
             image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
             image_expanded = np.expand_dims(image_rgb, axis=0)
 
             # Perform the actual detection by running the model with the image as input
-            (boxes, scores, classes, num) = self.sess.run(
-                [self.detection_boxes, self.detection_scores, self.detection_classes, self.num_detections],
-                feed_dict={self.image_tensor: image_expanded})
+            (boxes, scores, classes, num) = sess.run(
+                [detection_boxes, detection_scores, detection_classes, num_detections],
+                feed_dict={image_tensor: image_expanded})
 
             # Draw the results of the detection (aka 'visulaize the results')
 
@@ -193,9 +196,10 @@ class ObjectDetection(object):
             
             # image_np = load_image_into_numpy_array(image)
             # Expand dimensions since the model expects images to have shape: [1, None, None, 3]
+            detection_graph = tf.Graph()
             image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
             # Actual detection.
-            output_dict = run_inference_for_single_image(image, self.detection_graph)
+            output_dict = run_inference_for_single_image(image, detection_graph)
             # Visualization of the results of a detection.
             vis_util.visualize_boxes_and_labels_on_image_array(
                 image,
