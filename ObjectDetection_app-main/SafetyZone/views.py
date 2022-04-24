@@ -20,7 +20,7 @@ for item in Project.objects.all().values():
     if item['cameraIP'] == '0':
         running_projects.append(VideoCamera(item['name'],item['modelName']))
     else:
-        running_projects.append(VideoCamera(item['name'], item['cameraIP'], item['modelName']))
+        running_projects.append(VideoCamera(item['name'], item['modelName'], item['cameraIP']))
 
 
 
