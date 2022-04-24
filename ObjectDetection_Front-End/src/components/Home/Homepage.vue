@@ -39,12 +39,12 @@
                 </div>
                 <div class="inputs">
                   <div class="input" v-for="item in input_data" :key="item">
-                    <div style="margin: 0;padding: 0;display: flex;align-items: center;justify-content: space-between;"><span style="font-weight: 400;margin-right: 5px">{{item}}:</span><template v-if="item == 'Plant'"><input type="number" min="0" :name="item"></template><template v-else-if="item == 'Kamera Tipi'"><select style="width: 201px;height: 30px;" :name="item"><option value="ipCamera">IP Kamera</option></select></template><template v-else><input type="text" :name="item"></template></div>
+                    <div style="margin: 0;padding: 0;display: flex;align-items: center;justify-content: space-between;"><span style="font-weight: 400;margin-right: 5px">{{item}}:</span><template v-if="item == 'Plant'"><input type="number" min="0" :name="item"></template><template v-else-if="item == 'Model Adı'"><select style="width: 201px;height: 30px;" :name="item"><option value="Fast-Rcnn">Fast-Rcnn</option><option value="Mask-Rcnn">Mask-Rcnn</option></select></template><template v-else-if="item == 'Kamera Tipi'"><select style="width: 201px;height: 30px;" :name="item"><option value="ipCamera">IP Kamera</option></select></template><template v-else><input type="text" :name="item"></template></div>
                   </div>
                 </div>
                 <div class="inputs" style="border-top: 1px solid #ada9a930;grid-template-columns: auto auto auto">
-                  <div class="input" v-for="item in configs" :key="item">
-                    <div style="margin: 0;padding: 0;display: flex;align-items: center;justify-content: space-between;"><span style="font-weight: 400;margin-right: 5px">{{item.configName}}:</span><template v-if="item == 'Plant'"><input type="number" min="0" :name="item"></template><template v-else-if="item == 'Kamera Tipi'"><select style="width: 201px;height: 30px;" :name="item"><option value="ipCamera">IP Kamera</option></select></template><template v-else><input type="text" :name="item"></template></div>
+                  <div class="input" v-for="item,index in configs" :key="index">
+                    <div style="margin: 0;padding: 0;display: flex;align-items: center;justify-content: space-between;"><span style="font-weight: 400;margin-right: 5px">{{item.configName}}:</span><template v-if="item == 'Plant'"><input type="number" min="0" :name="item"></template><template v-else-if="item == 'Model Adı'"><select style="width: 201px;height: 30px;" :name="item"><option value="Fast-Rcnn">Fast-Rcnn</option><option value="Mask-Rcnn">Mask-Rcnn</option></select></template><template v-else-if="item == 'Kamera Tipi'"><select style="width: 201px;height: 30px;" :name="item"><option value="ipCamera">IP Kamera</option></select></template><template v-else><input type="text" :name="item"></template></div>
                   </div>
                 </div>
                 <div class="send kaydet">
@@ -100,7 +100,7 @@ export default {
       configs: [],
       video_feed: 'http://127.0.0.1:8000/video_feed/0',
       object_detection: 'http://127.0.0.1:8000/object_detection/',
-      input_data: ['Plant', 'Proje Adı', 'Kamera IP', 'Kamera Tipi', 'Kullanıcı Adı', 'Kullanıcı Şifre']
+      input_data: ['Plant', 'Proje Adı', 'Kamera IP', 'Kamera Tipi', 'Kullanıcı Adı', 'Kullanıcı Şifre', 'Model Adı']
     }
   },
   methods: {
@@ -142,7 +142,8 @@ export default {
           cameraIP: document.querySelector('[name="' + this.input_data[2] + '"]').value,
           cameraType: document.querySelector('[name="' + this.input_data[3] + '"]').options[document.querySelector('[name="' + this.input_data[3] + '"]').selectedIndex].value,
           userName: document.querySelector('[name="' + this.input_data[4] + '"]').value,
-          userPassword: document.querySelector('[name="' + this.input_data[5] + '"]').value
+          userPassword: document.querySelector('[name="' + this.input_data[5] + '"]').value,
+          modelName: document.querySelector('[name="' + this.input_data[6] + '"]').options[document.querySelector('[name="' + this.input_data[6] + '"]').selectedIndex].value
         })
       })
         .then(response => response.json())

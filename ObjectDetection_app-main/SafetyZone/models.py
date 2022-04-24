@@ -8,6 +8,7 @@ class Project(models.Model):
     cameraType = models.CharField(max_length=200)
     userName = models.CharField(max_length=200)
     userPassword = models.CharField(max_length=200)
+    modelName = models.CharField(max_length=200)
 
 class Config(models.Model):
     configKeyID = models.AutoField(primary_key=True)

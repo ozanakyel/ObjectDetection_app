@@ -15,12 +15,12 @@ from SafetyZone.serializers import ProjectSerializer,ConfigSerializer,ProjectCon
 
 
 running_projects = []
-for item in Project.objects.all().values():
-    print(item, item['cameraIP'])
-    if item['cameraIP'] == '0':
-        running_projects.append(VideoCamera(item['name']))
-    else:
-        running_projects.append(VideoCamera(item['name'], item['cameraIP']))
+# for item in Project.objects.all().values():
+#     print(item, item['cameraIP'])
+#     if item['cameraIP'] == '0':
+#         running_projects.append(VideoCamera(item['name'],item['modelName']))
+#     else:
+#         running_projects.append(VideoCamera(item['name'], item['cameraIP'], item['modelName']))
 
 
 
@@ -61,7 +61,10 @@ def get_projects(request, id = 0):
         patient_serializer = ProjectSerializer(data = projects_data)
         if patient_serializer.is_valid():
             patient_serializer.save()
-            running_projects.append(VideoCamera())
+            if projects_data['cameraIP'] == '0':
+                running_projects.append(VideoCamera(projects_data['name'],projects_data['modelName']))
+            else:
+                running_projects.append(VideoCamera(projects_data['name'], projects_data['cameraIP'], projects_data['modelName']))
             return JsonResponse("Added Successfully", safe = False)
         return JsonResponse("Failed to Add", safe = False)
 @csrf_exempt

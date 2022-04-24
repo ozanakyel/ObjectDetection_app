@@ -5,7 +5,7 @@ from SafetyZone.models import *
 class ProjectSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Project
-        fields=('projectID', 'plant', 'name', 'cameraIP', 'cameraType', 'userName', 'userPassword')
+        fields=('projectID', 'plant', 'name', 'cameraIP', 'cameraType', 'userName', 'userPassword', 'modelName')
 
 class ConfigSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:

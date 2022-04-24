@@ -33,16 +33,17 @@ from .server_utils import draw_polly_and_check_isin
 
 #to capture video class
 # MODEL_NAME = 'Mask-Rcnn'
-MODEL_NAME = 'Fast-Rcnn'
+
 
 class VideoCamera(object):
-    def __init__(self, project_name,camera_ip=0):
+    def __init__(self, project_name,model_name,camera_ip=0):
         # self.video = cv2.VideoCapture('rtsp://admin:Abc1234*@10.16.222.253/')
         self.video = cv2.VideoCapture(camera_ip)
         (self.grabbed, self.frame) = self.video.read()
         self.jpeg = None
         self.image = None
         self.project_name = project_name
+        self.MODEL_NAME = model_name
         self.detect = object_detector.ObjectDetection()
         # self.detect.setDaemon(True)
         self.start_time = time.time()
@@ -79,7 +80,7 @@ class VideoCamera(object):
             image = cv2.putText(image, fps_disp, (10, 25),
                 cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 0), 2)
             _, jpeg = cv2.imencode('.jpg', image)
-            image_detected, boxes, scores, classes = self.detect.object_detection(image, MODEL_NAME)
+            image_detected, boxes, scores, classes = self.detect.object_detection(image, self.MODEL_NAME)
             image_detected = draw_polly_and_check_isin(image_detected, boxes, scores, classes)
 
             _, image = cv2.imencode('.jpg', image_detected)
