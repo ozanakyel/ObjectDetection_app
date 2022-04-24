@@ -11,8 +11,14 @@
             <div>
               <div><p>Bypass Active<span style="color: green;font-size: 18px">&#10003;</span></p></div>
               <!-- <div style="width: 100%"><img class="mini-image" src="" width="50%" height="100" style="object-fit: contain"><img class="mini-image" src="" width="50%" height="100" style="object-fit: contain"></div> -->
-              <div><p>Process Result</p></div>
-              <div><p>Last Process Time:</p><span style="font-weight: 400">19.02.2022 10:32</span></div>
+              <div><p>Process Result</p>
+                <div class="ok-nok">
+                    <div class="butons" v-for="item in 2" :key="item" style="background: none;margin 0;margin-rigth:0 padding: 0;width: fit-content;">
+                        <span class="status" style="width: 6px;height: 6px;"></span><span style="font-size: 12px;font-weight: 400;color: black;margin-top: 3px;" class="text">OK</span>
+                    </div>
+                </div>
+              </div>
+              <div><p>Last Process Time:</p><span style="font-weight: 400" name="lastprocesstime">19.02.2022 10:32</span></div>
               <div><p>Kamera IP:</p> </div>
               <div><p>Plc IP:</p> </div>
             </div>
@@ -185,6 +191,36 @@ export default {
       .then(data => {
         this.configs = data
       })
+    const url = 'ws://127.0.0.1:8081/ws/socket-server/'
+
+    const chatSocket = new WebSocket(url)
+
+    chatSocket.onmessage = function (e) {
+      const data = JSON.parse(e.data)
+      var parser = JSON.parse(data.message.replaceAll('\'', '"'))
+      // const html = '<div class="butons"><span class="status"></span><span style="margin-left: 3px;margin-right: 6px;">OK</span></div>'
+      // console.log('Data:', parser[0])
+
+      if (data.type === 'chat') {
+        const messages = document.querySelectorAll('.ok-nok .butons .status')
+        const OkNok = document.querySelectorAll('.ok-nok .butons .text')
+        if (parser[0].PollyIsIn[parser[0].PollyIsIn.length - 1] === 'True') {
+          messages[0].style.backgroundColor = 'red'
+          OkNok[0].innerText = 'NOK'
+        } else {
+          messages[0].style.backgroundColor = 'green'
+          OkNok[0].innerText = 'OK'
+        }
+        if (parser[0].PollyIsIn[parser[0].PollyIsIn.length - 2] === 'True') {
+          messages[1].style.backgroundColor = 'red'
+          OkNok[1].innerText = 'NOK'
+        } else {
+          messages[1].style.backgroundColor = 'green'
+          OkNok[1].innerText = 'OK'
+        }
+        document.querySelector('[name="lastprocesstime"]').innerText = parser[0].Date
+      }
+    }
   },
   mounted () {
     if (Number(document.querySelector('.middle').offsetHeight) < Number(window.innerHeight)) {
